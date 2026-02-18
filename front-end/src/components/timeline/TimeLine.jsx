@@ -16,7 +16,7 @@ const TimeLine = () => {
       date: 'Jan 2020 - Dec 2022',
       title: 'Bachelor of Science in Mathematics (Computer Science)',
       location: 'University of Limpopo',
-      achievement: 'Best Centre of Excellence Tutor',
+      achievement: 'Math and CS Tutor',
       status: 'completed',
       icon: <School />
     },
@@ -32,7 +32,7 @@ const TimeLine = () => {
       date: 'Jan 2025 - Dec 2025',
       title: 'Information Technology Internship',
       location: 'REDM Professional Services (Pty) Ltd',
-      achievement: 'Improved ReactJS and NodeJS skills to 90%, Gained collaboration and communication skills, Successfully completed internship with positive feedback from supervisors',
+      achievement: 'React, Node, Oracle',
       // status: 'current',
       status: 'completed',
       icon: <Work />
