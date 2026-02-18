@@ -65,6 +65,12 @@
   border-radius: 20px 20px 0 0;
 }
 
+.achievement-image-skeleton {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .github-icon-overlay {
   position: absolute;
   top: 15px;
@@ -103,8 +109,16 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.35s ease;
   filter: brightness(0.8) contrast(1.1);
+}
+
+.achievement-image.hide {
+  opacity: 0;
+}
+
+.achievement-image.show {
+  opacity: 1;
 }
 
 .achievement-card:hover .achievement-image {
@@ -115,6 +129,64 @@
 .achievement-content {
   padding: 1.5rem;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+}
+
+.achievement-content-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.skeleton-title {
+  height: 20px;
+  width: 70%;
+}
+
+.skeleton-category {
+  width: 45%;
+}
+
+.skeleton-description {
+  width: 100%;
+}
+
+.skeleton-description.short {
+  width: 80%;
+}
+
+.achievement-tech-skeleton-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.skeleton-chip {
+  width: 70px;
+  height: 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 90%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  animation: skeletonShimmer 1.2s infinite;
 }
 
 .achievement-title {
@@ -397,6 +469,15 @@
   padding: 0.2rem 0.6rem;
   font-size: 0.72rem;
   border-radius: 10px;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
 }
 
 /* LeetCode GitHub Icon */
@@ -728,5 +809,41 @@
   .show-more-btn {
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 425px) and (max-width: 768px) {
+  .achievements-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .achievement-image-container {
+    height: 140px;
+  }
+
+  .achievement-content {
+    padding: 0.85rem;
+  }
+
+  .achievement-title {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .achievement-category {
+    font-size: 0.72rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .achievement-description {
+    font-size: 0.76rem;
+    margin-bottom: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .tech-tag {
+    font-size: 0.62rem;
+    padding: 0.2rem 0.45rem;
   }
 }

@@ -152,6 +152,7 @@ const Achievements = () => {
   const [showLeftEdge, setShowLeftEdge] = useState(false);
   const [showRightEdge, setShowRightEdge] = useState(false);
   const [showAllCerts, setShowAllCerts] = useState(false);
+  const [loadedAchievementImages, setLoadedAchievementImages] = useState({});
   // const [isIframeOpen, setIsIframeOpen] = useState(false);
   // const [iframeUrl, setIframeUrl] = useState('');
   // const [iframeTitle, setIframeTitle] = useState('');
@@ -260,6 +261,19 @@ const Achievements = () => {
     setShowAllCerts(!showAllCerts);
   };
 
+  const getOptimizedImageSrc = (imagePath) => {
+    if (!imagePath) return imagePath;
+    const hasQuery = imagePath.includes('?');
+    return `${imagePath}${hasQuery ? '&' : '?'}quality=60`;
+  };
+
+  const handleAchievementImageLoaded = (achievementId) => {
+    setLoadedAchievementImages((prev) => ({
+      ...prev,
+      [achievementId]: true
+    }));
+  };
+
   return (
     <div className="achievements-container">
       {/* Projects Section */}
@@ -270,17 +284,30 @@ const Achievements = () => {
       
       <div className="achievements-grid">
         {achievements.map((achievement) => (
-          <div key={achievement.id} className="achievement-card">
+          <div
+            key={achievement.id}
+            className={`achievement-card ${loadedAchievementImages[achievement.id] ? 'is-loaded' : 'is-loading'}`}
+          >
             <div className="achievement-image-container">
+              {!loadedAchievementImages[achievement.id] && (
+                <div className="achievement-image-skeleton shimmer" />
+              )}
+
               <img 
-                src={achievement.image} 
+                src={getOptimizedImageSrc(achievement.image)}
                 alt={achievement.title}
-                className="achievement-image"
+                className={`achievement-image ${loadedAchievementImages[achievement.id] ? 'show' : 'hide'}`}
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+                onLoad={() => handleAchievementImageLoaded(achievement.id)}
                 onError={(e) => {
                   e.target.src = '/assets/images/placeholder-project.jpg';
+                  handleAchievementImageLoaded(achievement.id);
                 }}
               />
-              {achievement.link && (
+
+              {loadedAchievementImages[achievement.id] && achievement.link && (
                 <div 
                   className="github-icon-overlay"
                   onClick={() => window.open(achievement.link, '_blank')}
@@ -299,15 +326,31 @@ const Achievements = () => {
             </div>
             
             <div className="achievement-content">
-              <h3 className="achievement-title">{achievement.title}</h3>
-              <p className="achievement-category">{achievement.category}</p>
-              <p className="achievement-description">{achievement.description}</p>
-              
-              <div className="achievement-technologies">
-                {achievement.technologies.map((tech, index) => (
-                  <span key={index} className="tech-tag">{tech}</span>
-                ))}
-              </div>
+              {loadedAchievementImages[achievement.id] ? (
+                <>
+                  <h3 className="achievement-title">{achievement.title}</h3>
+                  <p className="achievement-category">{achievement.category}</p>
+                  <p className="achievement-description">{achievement.description}</p>
+
+                  <div className="achievement-technologies">
+                    {achievement.technologies.map((tech, index) => (
+                      <span key={index} className="tech-tag">{tech}</span>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className="achievement-content-skeleton">
+                  <div className="skeleton-line skeleton-title shimmer" />
+                  <div className="skeleton-line skeleton-category shimmer" />
+                  <div className="skeleton-line skeleton-description shimmer" />
+                  <div className="skeleton-line skeleton-description short shimmer" />
+                  <div className="achievement-tech-skeleton-row">
+                    <span className="skeleton-chip shimmer" />
+                    <span className="skeleton-chip shimmer" />
+                    <span className="skeleton-chip shimmer" />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}

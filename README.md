@@ -4,11 +4,11 @@
 
 ## ✨ About This Project
 
-This portfolio is more than just a website—it's a digital representation of my professional journey, built with the same attention to detail and technical excellence I bring to every project. From clean code to smooth animations, every element reflects my commitment to quality.
+This portfolio is more than just a website, it's a digital representation of my professional journey, built with the same attention to detail and technical excellence I bring to every project. From clean code to smooth animations, every element reflects my commitment to quality.
 
 ## 🚀 Live Demo
 
-Visit the live site: [Clement's Portfolio Wensite](https://onclement.vercel.app/)
+Visit the live site: [Clement's Portfolio Website](https://onclement.vercel.app/)
 
 ## 🎯 What's Inside
 
