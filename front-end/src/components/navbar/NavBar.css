@@ -855,6 +855,18 @@
   .mobile-menu-toggle {
     display: flex;
   }
+
+  .mobile-menu-overlay {
+    align-items: flex-start;
+    padding-top: 4.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .mobile-menu-content {
+    margin-top: 0;
+    max-height: calc(100dvh - 5.5rem);
+    overflow-y: auto;
+  }
   
   .navbar-right {
     display: none;
