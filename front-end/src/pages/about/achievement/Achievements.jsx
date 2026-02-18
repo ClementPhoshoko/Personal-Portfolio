@@ -5,6 +5,16 @@ import './Achievements.css';
 const achievements = [
   {
     id: 1,
+    title: "Clementine Store e-commerce",
+    category: "E-commerce Freelancing",
+    description: "Built and deployed a full-stack e-commerce platform with secure product management, responsive storefront UX, image hosting integration, and scalable backend APIs.",
+    technologies: ["React", "Node/Express", "Git", "Supabase", "Cloudinary"],
+    image: "/assets/images/homepage_cover.png",
+    year: "2026",
+    link: "https://clementine-store.vercel.app/"
+  },
+  {
+    id: 2,
     title: "Robot with One-Eye",
     category: "Personal Project",
     description: "Captures webcam video, detects motion in real-time, and identifies direction using OpenCV and Java Swing.",
@@ -14,7 +24,7 @@ const achievements = [
     link: "https://github.com/NdaedzoPhoshoko/Robot-With-One-Eye"
   },
   {
-    id: 2,
+    id: 3,
     title: "Linear Codes and G-Modules",
     category: "Academic Project", 
     description: "G-modules enhance linear codes for error correction through algebraic optimization of encoding/decoding.",
@@ -24,7 +34,7 @@ const achievements = [
     link: "https://www.overleaf.com/read/kqfssdgrbwzh#c4639a"
   },
   {
-    id: 3,
+    id: 4,
     title: "Portfolio Website",
     category: "IT Project",
     description: "A responsive portfolio website using React.js, Node.js, and Express.js with modern UI/UX design.",
@@ -34,7 +44,7 @@ const achievements = [
     link: "https://github.com/NdaedzoPhoshoko/Portfolio-for-Clement"
   },
   {
-    id: 4,
+    id: 5,
     title: "Dragon44x Indicator",
     category: "Market Analysis",
     description: "Inverse Head and Shoulders, Descending Triangle, Bull Flag, and etc. indicators in MT4.",
@@ -43,7 +53,7 @@ const achievements = [
     year: "2025"
   },
   {
-    id: 5,
+    id: 6,
     title: "C++ Projects[Batch]",
     category: "Learning",
     description: "Exploring C++ from IO streams, functions, classes, and etc.",
@@ -53,7 +63,7 @@ const achievements = [
     link: "https://github.com/NdaedzoPhoshoko/CPP-Projects"
   },
   {
-    id: 6,
+    id: 7,
     title: "Java Projects[Batch]",
     category: "Learning",
     description: "Exploring Java from Data Structures to Threads. Also covers different topics in OOP.",

@@ -24,15 +24,17 @@ const TimeLine = () => {
       date: 'Jan 2024 - Dec 2024',
       title: 'Bachelor of Science Honors in Mathematics',
       location: 'University of Limpopo',
-      achievement: 'Cum Laude Achievement',
+      achievement: 'Cum Laude Student',
       status: 'completed',
       icon: <CheckCircle />
     },
     {
-      date: 'Jan 2025 - Sep 2025',
+      date: 'Jan 2025 - Dec 2025',
       title: 'Information Technology Internship',
       location: 'REDM Professional Services (Pty) Ltd',
-      status: 'current',
+      achievement: 'Improved ReactJS and NodeJS skills to 90%, Gained collaboration and communication skills, Successfully completed internship with positive feedback from supervisors',
+      // status: 'current',
+      status: 'completed',
       icon: <Work />
     }
   ];
