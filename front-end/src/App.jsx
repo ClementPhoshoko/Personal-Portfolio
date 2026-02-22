@@ -85,7 +85,34 @@ function AppContent() {
           <Route path="/resume" element={<Resume />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/view/:id" element={<Suspense fallback={<div className="view-item-container"><div className="loading-container"><div className="loading-spinner"></div><p>Loading post...</p></div></div>}><ViewItem /></Suspense>} />
+          <Route
+            path="/blog/view/:id"
+            element={
+              <Suspense
+                fallback={
+                  <div className="view-item-container">
+                    <div className="view-item-skeleton" aria-label="Loading blog post">
+                      <div className="back-button-container">
+                        <div className="skeleton-pill shimmer" />
+                      </div>
+                      <div className="view-item-hero">
+                        <div className="hero-image-container">
+                          <div className="skeleton-block skeleton-hero-image shimmer" />
+                        </div>
+                        <div className="hero-content">
+                          <div className="skeleton-line title shimmer" />
+                          <div className="skeleton-line paragraph shimmer" />
+                          <div className="skeleton-line paragraph short shimmer" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+              >
+                <ViewItem />
+              </Suspense>
+            }
+          />
           <Route path="/tutorials" element={<Tutorials />} />
           {/* <Route path="/hire" element={<HireMe />} /> */}
           <Route path="/contact" element={<Contact />} />
