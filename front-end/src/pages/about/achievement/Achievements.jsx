@@ -7,8 +7,8 @@ const achievements = [
     id: 1,
     title: "Clementine Store e-commerce",
     category: "E-commerce Freelancing",
-    description: "Built and deployed a full-stack e-commerce platform with secure product management, responsive storefront UX, image hosting integration, and scalable backend APIs.",
-    technologies: ["React", "Node/Express", "Git", "Supabase", "Cloudinary"],
+    description: "Built and deployed a full-stack e-commerce with responsive UX, image hosting integration, and APIs.",
+    technologies: ["React", "Node", "Git", "Supabase"],
     image: "/assets/images/homepage_cover.png",
     year: "2026",
     link: "https://clementine-store.vercel.app/"
@@ -284,6 +284,37 @@ const Achievements = () => {
     }));
   };
 
+  const openInNewBlackPage = (url) => {
+    if (!url) return;
+
+    const newTab = window.open('', '_blank');
+
+    if (newTab) {
+      newTab.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Opening...</title>
+            <style>
+              html, body {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                background: #000;
+              }
+            </style>
+          </head>
+          <body></body>
+        </html>
+      `);
+      newTab.document.close();
+      newTab.location.href = url;
+      return;
+    }
+
+    window.open(url, '_blank');
+  };
+
   return (
     <div className="achievements-container">
       {/* Projects Section */}
@@ -338,7 +369,14 @@ const Achievements = () => {
             <div className="achievement-content">
               {loadedAchievementImages[achievement.id] ? (
                 <>
-                  <h3 className="achievement-title">{achievement.title}</h3>
+                  <button
+                    type="button"
+                    className={`achievement-title ${achievement.link ? 'achievement-title-link' : ''}`}
+                    onClick={() => openInNewBlackPage(achievement.link)}
+                    disabled={!achievement.link}
+                  >
+                    {achievement.title}
+                  </button>
                   <p className="achievement-category">{achievement.category}</p>
                   <p className="achievement-description">{achievement.description}</p>
 

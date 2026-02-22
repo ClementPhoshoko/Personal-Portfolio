@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Item.css';
 
@@ -12,6 +12,13 @@ const Item = ({
   date = "No date either"
 }) => {
   const navigate = useNavigate();
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const getOptimizedImageSrc = (imagePath) => {
+    if (!imagePath) return imagePath;
+    const hasQuery = imagePath.includes('?');
+    return `${imagePath}${hasQuery ? '&' : '?'}quality=60`;
+  };
 
   const handleClick = () => {
     if (id) {
@@ -24,10 +31,18 @@ const Item = ({
     <div className="blog-item-card" onClick={handleClick}>
       {/* Featured Image */}
       <div className="card-image-container">
+        {!imageLoaded && <div className="card-image-skeleton shimmer" />}
         <img 
-          src={image} 
+          src={getOptimizedImageSrc(image)} 
           alt={title}
-          className="card-image"
+          className={`card-image ${imageLoaded ? 'show' : 'hide'}`}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setImageLoaded(true)}
+          onError={(e) => {
+            e.target.src = '/assets/images/placeholder-project.jpg';
+            setImageLoaded(true);
+          }}
         />
       </div>
 

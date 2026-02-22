@@ -84,7 +84,7 @@
   animation: smoothSlideIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
   will-change: transform, opacity;
   --stagger-delay: 0.06s;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 12px;
   position: relative;
 }
@@ -259,7 +259,7 @@
   animation: slideInWithGlow 0.8s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--stagger-delay) * 0.5) both;
   text-align: left;
   will-change: transform, opacity, filter;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0);
   backface-visibility: hidden;
 }
@@ -286,7 +286,7 @@
   animation: elasticSlideIn 1.1s cubic-bezier(0.2, 0.9, 0.3, 1) calc(0.8s + var(--stagger-delay) * 1) both;
   text-align: left;
   will-change: transform, opacity, filter;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0);
   backface-visibility: hidden;
   white-space: nowrap;
@@ -314,7 +314,7 @@
   animation: slideInSmooth 1.0s cubic-bezier(0.25, 0.9, 0.35, 1) calc(0.8s + var(--stagger-delay) * 2) both;
   text-align: left;
   will-change: transform, opacity, filter;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0);
   backface-visibility: hidden;
   white-space: nowrap;
@@ -357,7 +357,7 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .scroll-indicator:hover {
@@ -376,7 +376,7 @@
   color: #888888;
   animation: gentlePulse 3s ease-in-out infinite calc(var(--stagger-delay) * 7);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, color, filter;
   transform: translateZ(0);
   backface-visibility: hidden;
@@ -434,6 +434,64 @@
     opacity: 0.8;
     transform: translateX(4px) scale(1.01);
     filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes elasticSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-42px) scale(0.96);
+    filter: blur(3px);
+  }
+  60% {
+    opacity: 0.9;
+    transform: translateX(6px) scale(1.01);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes slideInSmooth {
+  0% {
+    opacity: 0;
+    transform: translateX(-36px) scale(0.97);
+    filter: blur(2px);
+  }
+  55% {
+    opacity: 0.85;
+    transform: translateX(4px) scale(1.005);
+    filter: blur(0.8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes floatInDelayed {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
   }
   100% {
     opacity: 1;
@@ -1145,14 +1203,18 @@
   gap: 0.5rem;
   margin: 0 2rem;
   padding: 0.5rem 1rem;
-  animation: popOut 0.8s ease-out;
-  animation-delay: calc(var(--item-index) * 0.3s);
-  animation-fill-mode: both;
+  animation: none;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   pointer-events: none;
+}
+
+.language-item:nth-child(-n+17) {
+  animation: popOut 0.8s ease-out;
+  animation-delay: calc(var(--item-index) * 0.3s);
+  animation-fill-mode: both;
 }
 
 @keyframes popOut {

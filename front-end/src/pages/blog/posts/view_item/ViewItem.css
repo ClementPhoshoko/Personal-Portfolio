@@ -259,6 +259,136 @@
   100% { transform: rotate(360deg); }
 }
 
+.view-item-skeleton {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skeleton-block,
+.skeleton-line,
+.skeleton-pill,
+.skeleton-chip,
+.skeleton-tag,
+.skeleton-avatar {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+.skeleton-pill {
+  width: 150px;
+  height: 40px;
+  border-radius: 999px;
+}
+
+.skeleton-hero-image {
+  width: 100%;
+  height: 100%;
+}
+
+.skeleton-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.skeleton-author-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.skeleton-author-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.skeleton-chip {
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 8px;
+  margin-bottom: 0.7rem;
+}
+
+.skeleton-line.short {
+  width: 70%;
+}
+
+.skeleton-line.medium {
+  width: 55%;
+}
+
+.skeleton-line.title {
+  height: 38px;
+  width: 82%;
+}
+
+.skeleton-line.paragraph {
+  height: 14px;
+  width: 100%;
+}
+
+.skeleton-line.heading {
+  height: 30px;
+  width: 60%;
+}
+
+.skeleton-tags-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.skeleton-tag {
+  width: 90px;
+  height: 28px;
+  border-radius: 16px;
+}
+
+.skeleton-content-block {
+  padding-top: 0.5rem;
+  min-height: 420px;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 90%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  animation: skeletonShimmer 1.2s infinite;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
 .not-found-container h1 {
   font-size: 2.5rem;
   color: #ffffff;
@@ -341,6 +471,16 @@
     align-items: flex-start;
     gap: 1rem;
   }
+
+  .skeleton-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .skeleton-line.title {
+    height: 30px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -372,6 +512,15 @@
   .author-avatar {
     width: 40px;
     height: 40px;
+  }
+
+  .skeleton-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .skeleton-content-block {
+    min-height: 360px;
   }
 }
 

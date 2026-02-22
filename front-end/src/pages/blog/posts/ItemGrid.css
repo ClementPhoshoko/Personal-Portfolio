@@ -96,6 +96,67 @@
   justify-items: center;
 }
 
+.item-grid-skeleton-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.item-grid-skeleton-image {
+  width: 100%;
+  height: 240px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.item-grid-skeleton-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.item-grid-skeleton-line {
+  height: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.item-grid-skeleton-line.title {
+  height: 22px;
+  width: 72%;
+}
+
+.item-grid-skeleton-line.short {
+  width: 80%;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 90%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  animation: skeletonShimmer 1.2s infinite;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
 /* Responsive Grid */
 @media (max-width: 1200px) {
   .item-grid {

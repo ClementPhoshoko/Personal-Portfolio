@@ -25,6 +25,12 @@ const programmingLanguages = [
 ];
 
 const Home = () => {
+  const getOptimizedImageSrc = (imagePath) => {
+    if (!imagePath) return imagePath;
+    const hasQuery = imagePath.includes('?');
+    return `${imagePath}${hasQuery ? '&' : '?'}quality=60`;
+  };
+
   const scrollToMainContainer = () => {
     const mainContainer = document.querySelector('.main-container');
     if (mainContainer) {
@@ -56,7 +62,7 @@ const Home = () => {
         </div>
         <div className="top-right-container">
           <img 
-            src="/assets/images/reactJscode.png" 
+            src={getOptimizedImageSrc('/assets/images/reactJscode.png')} 
             alt="ReactJS script preview image" 
             className="script-preview-image"
           />

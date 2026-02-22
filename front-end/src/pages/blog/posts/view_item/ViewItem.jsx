@@ -126,9 +126,54 @@ const ViewItem = () => {
   if (loading) {
     return (
       <div className="view-item-container">
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-          <p>Loading post...</p>
+        <div className="view-item-skeleton" aria-label="Loading blog post">
+          <div className="back-button-container">
+            <div className="skeleton-pill shimmer" />
+          </div>
+
+          <div className="view-item-hero">
+            <div className="hero-image-container">
+              <div className="skeleton-block skeleton-hero-image shimmer" />
+            </div>
+
+            <div className="hero-content">
+              <div className="skeleton-meta-row">
+                <div className="skeleton-author-group">
+                  <div className="skeleton-avatar shimmer" />
+                  <div className="skeleton-author-lines">
+                    <div className="skeleton-line medium shimmer" />
+                    <div className="skeleton-line short shimmer" />
+                  </div>
+                </div>
+                <div className="skeleton-chip shimmer" />
+              </div>
+
+              <div className="skeleton-line title shimmer" />
+              <div className="skeleton-line title short shimmer" />
+              <div className="skeleton-line paragraph shimmer" />
+              <div className="skeleton-line paragraph short shimmer" />
+
+              <div className="skeleton-tags-row">
+                <div className="skeleton-tag shimmer" />
+                <div className="skeleton-tag shimmer" />
+                <div className="skeleton-tag shimmer" />
+              </div>
+            </div>
+          </div>
+
+          <div className="view-item-content">
+            <div className="content-wrapper">
+              <div className="skeleton-content-block">
+                <div className="skeleton-line heading shimmer" />
+                <div className="skeleton-line paragraph shimmer" />
+                <div className="skeleton-line paragraph shimmer" />
+                <div className="skeleton-line paragraph short shimmer" />
+                <div className="skeleton-line heading medium shimmer" />
+                <div className="skeleton-line paragraph shimmer" />
+                <div className="skeleton-line paragraph short shimmer" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -52,6 +52,7 @@
 .achievement-card:nth-child(4) { animation-delay: 0.4s; }
 .achievement-card:nth-child(5) { animation-delay: 0.5s; }
 .achievement-card:nth-child(6) { animation-delay: 0.6s; }
+.achievement-card:nth-child(7) { animation-delay: 0.7s; }
 
 .achievement-card:hover {
   transform: translateY(-5px);
@@ -190,12 +191,38 @@
 }
 
 .achievement-title {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font-family: inherit;
   font-size: 1.3rem;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 0.5rem;
   line-height: 1.3;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-title-link {
+  cursor: pointer;
+  transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.achievement-title-link:hover {
+  color: #ff6b35;
+  text-shadow: 0 0 12px rgba(255, 107, 53, 0.45);
+  transform: translateX(2px);
+}
+
+.achievement-title-link:focus-visible {
+  outline: 2px solid rgba(255, 107, 53, 0.9);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.achievement-title:disabled {
+  cursor: default;
 }
 
 .achievement-category {

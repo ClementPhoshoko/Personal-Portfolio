@@ -4,7 +4,7 @@ import Footer from "./components/footer/Footer";
 import NotFound from "./components/notFound/NotFound";
 import WebsiteDown from "./components/websiteDown/WebsiteDown";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 
 import Home from "./pages/home/Home";
 import Journey from "./pages/about/journey/Journey";
@@ -26,21 +26,17 @@ const MAINTENANCE_MODE = false;
 
 // Component to handle page transitions
 function AppContent() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const location = useLocation();
-
-  // Initial page load effect
-  useEffect(() => {
-    // Start with fade in on first load
-    const initialTimer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    
-    return () => clearTimeout(initialTimer);
-  }, []);
+  const isFirstRouteRender = useRef(true);
 
   // Page navigation effect
   useEffect(() => {
+    if (isFirstRouteRender.current) {
+      isFirstRouteRender.current = false;
+      return;
+    }
+
     // Fade out
     setIsVisible(false);
     
@@ -50,6 +46,11 @@ function AppContent() {
     }, 150);
     
     return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  // Reset scroll position on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [location.pathname]);
 
   // Set per-route document titles

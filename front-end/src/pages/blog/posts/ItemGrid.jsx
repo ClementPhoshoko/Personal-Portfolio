@@ -8,6 +8,7 @@ const ItemGrid = () => {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [filterType, setFilterType] = useState('all');
   const [filterValue, setFilterValue] = useState('');
+  const [isGridLoading, setIsGridLoading] = useState(true);
 
   useEffect(() => {
     // Transform the data to match the Item component props
@@ -25,6 +26,7 @@ const ItemGrid = () => {
     
     setAllBlogPosts(transformedPosts);
     setFilteredPosts(transformedPosts);
+    setIsGridLoading(false);
   }, []);
 
   // Filter posts based on selected criteria
@@ -93,7 +95,18 @@ const ItemGrid = () => {
       </div>
 
       <div className="item-grid">
-        {displayedPosts.map((post) => (
+        {isGridLoading
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <div key={`skeleton-${index}`} className="item-grid-skeleton-card shimmer">
+                <div className="item-grid-skeleton-image" />
+                <div className="item-grid-skeleton-content">
+                  <div className="item-grid-skeleton-line title" />
+                  <div className="item-grid-skeleton-line" />
+                  <div className="item-grid-skeleton-line short" />
+                </div>
+              </div>
+            ))
+          : displayedPosts.map((post) => (
           <Item
             key={post.id}
             id={post.id}

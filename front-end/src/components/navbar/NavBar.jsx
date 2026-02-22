@@ -28,6 +28,19 @@ const Navbar = () => {
   const [rotation, setRotation] = useState(0); // State for circular menu rotation
   const menuContainerRef = useRef(null); // Ref for circular menu container
 
+  const getOptimizedImageSrc = (imagePath) => {
+    if (!imagePath) return imagePath;
+    const hasQuery = imagePath.includes('?');
+    return `${imagePath}${hasQuery ? '&' : '?'}quality=60`;
+  };
+
+  const navigateAndCloseMegaMenus = (path) => {
+    setShowBlogMegaMenu(false);
+    setShowAboutMegaMenu(false);
+    setShowContactMegaMenu(false);
+    navigate(path);
+  };
+
   // Check if current page is home
   const isHomePage = location.pathname === '/';
 
@@ -107,7 +120,7 @@ const Navbar = () => {
         {/* Show page icon only on home page */}
         {isHomePage && (
           <div className="page-icon">
-            <img src={profileImage} alt="Page Icon" className="page-icon-img" />
+            <img src={getOptimizedImageSrc(profileImage)} alt="Page Icon" className="page-icon-img" />
           </div>
         )}
       </div>
@@ -202,7 +215,7 @@ const Navbar = () => {
         <Link to='/journey'>About Me</Link>
         {showAboutMegaMenu && (
           <div className="about-mega-menu-placeholder blog-mega-menu-placeholder">
-            <div className="mega-menu-item" onClick={() => navigate('/journey')} style={{ cursor: 'pointer' }}>
+            <div className="mega-menu-item" onClick={() => navigateAndCloseMegaMenus('/journey')} style={{ cursor: 'pointer' }}>
               <div className="mega-menu-icon">
                 <FontAwesomeIcon icon={faLightbulb} className="icon-my-journey" /> {/* Icon for My Journey */}
               </div>
@@ -211,7 +224,7 @@ const Navbar = () => {
                 <p>Discover my professional evolution from early beginnings to current expertise, including key career transitions and learning experiences that shaped my path in technology and development.</p>
               </div>
             </div>
-            <div className="mega-menu-item" onClick={() => navigate('/achievements')} style={{ cursor: 'pointer' }}>
+            <div className="mega-menu-item" onClick={() => navigateAndCloseMegaMenus('/achievements')} style={{ cursor: 'pointer' }}>
               <div className="mega-menu-icon">
                 <FontAwesomeIcon icon={faTrophy} className="icon-achievements" /> {/* Icon for Achievements */}
               </div>
@@ -220,7 +233,7 @@ const Navbar = () => {
                 <p>Explore my notable accomplishments, certifications, project successes, and recognition received throughout my professional journey in software development and technology innovation.</p>
               </div>
             </div>
-            <div className="mega-menu-item" onClick={() => navigate('/resume')} style={{ cursor: 'pointer' }}>
+            <div className="mega-menu-item" onClick={() => navigateAndCloseMegaMenus('/resume')} style={{ cursor: 'pointer' }}>
               <div className="mega-menu-icon">
                 <FontAwesomeIcon icon={faFileAlt} className="icon-my-resume" /> {/* Icon for My Resume */}
               </div>
@@ -242,7 +255,7 @@ const Navbar = () => {
         <Link to='/blog'>Blog World</Link>
         {showBlogMegaMenu && (
           <div className="blog-mega-menu-placeholder">
-            <div className="mega-menu-item" onClick={() => navigate('/blog')} style={{ cursor: 'pointer' }}>
+            <div className="mega-menu-item" onClick={() => navigateAndCloseMegaMenus('/blog')} style={{ cursor: 'pointer' }}>
               <div className="mega-menu-icon">
                 <FontAwesomeIcon icon={faPenToSquare} className="icon-latest-posts" /> {/* Icon for Latest Posts */}
               </div>
@@ -251,7 +264,7 @@ const Navbar = () => {
                 <p>Browse through my most recent blog entries covering industry insights, technical tutorials, personal reflections, and thought-provoking discussions about current trends in software development.</p>
               </div>
             </div>
-            <div className="mega-menu-item" onClick={() => navigate('/tutorials')} style={{ cursor: 'pointer' }}>
+            <div className="mega-menu-item" onClick={() => navigateAndCloseMegaMenus('/tutorials')} style={{ cursor: 'pointer' }}>
               <div className="mega-menu-icon">
                 <FontAwesomeIcon icon={faBook} className="icon-tutorials" /> {/* Icon for Tutorials */}
               </div>
@@ -273,7 +286,7 @@ const Navbar = () => {
         <Link to="/contact">Contact Me</Link>
         {showContactMegaMenu && (
           <div className="contact-mega-menu-placeholder blog-mega-menu-placeholder">
-            <div className="mega-menu-item" onClick={() => navigate('/contact')} style={{ cursor: 'pointer' }}>
+            <div className="mega-menu-item" onClick={() => navigateAndCloseMegaMenus('/contact')} style={{ cursor: 'pointer' }}>
               <div className="mega-menu-icon">
                 <FontAwesomeIcon icon={faEnvelope} className="icon-email-me" /> {/* Icon for Email Me */}
               </div>

@@ -138,6 +138,46 @@
   height: 480px;
   display: block;
   object-fit: cover;
+  transition: opacity 0.35s ease;
+}
+
+.main-image.hide {
+  opacity: 0;
+}
+
+.main-image.show {
+  opacity: 1;
+}
+
+.main-image-skeleton {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 90%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  animation: skeletonShimmer 1.2s infinite;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
 }
 
 .image-overlay {

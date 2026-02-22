@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Blog.css';
 import ItemGrid from './posts/ItemGrid';
 
 const Blog = () => {
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+
+  const getOptimizedImageSrc = (imagePath) => {
+    if (!imagePath) return imagePath;
+    const hasQuery = imagePath.includes('?');
+    return `${imagePath}${hasQuery ? '&' : '?'}quality=60`;
+  };
+
   return (
     <div className="blog-container">
       {/* Top Section - Hero */}
@@ -10,10 +18,18 @@ const Blog = () => {
         {/* Left Section - Image with Overlay */}
         <div className="left-section">
           <div className="image-container">
+            {!heroImageLoaded && <div className="main-image-skeleton shimmer" />}
             <img 
-              src="/assets/blogs/mainteachingstudents.jpeg" 
+              src={getOptimizedImageSrc('/assets/blogs/mainteachingstudents.jpeg')} 
               alt="Recent insights" 
-              className="main-image"
+              className={`main-image ${heroImageLoaded ? 'show' : 'hide'}`}
+              loading="eager"
+              decoding="async"
+              onLoad={() => setHeroImageLoaded(true)}
+              onError={(e) => {
+                e.target.src = '/assets/images/placeholder-project.jpg';
+                setHeroImageLoaded(true);
+              }}
             />
             <div className="image-overlay">
               <div className="author-text">
