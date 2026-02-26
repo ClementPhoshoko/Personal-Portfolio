@@ -10,6 +10,8 @@ This portfolio is more than just a website, it's a digital representation of my 
 
 Visit the live site: [Clement's Portfolio Website](https://onclement.vercel.app/)
 
+<img width="1870" height="886" alt="image" src="https://github.com/user-attachments/assets/f1944dde-8974-42c7-94d0-892a08f4fa4e" />
+
 ## 🎯 What's Inside
 
 ### **About Me**
