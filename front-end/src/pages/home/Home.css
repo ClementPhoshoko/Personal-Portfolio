@@ -1384,7 +1384,7 @@
   line-height: 1.5;
   margin: 0;
   font-weight: 300;
-  text-align: justify;
+  /* text-align: justify; */
 }
 
 /* Services section large screen design */
