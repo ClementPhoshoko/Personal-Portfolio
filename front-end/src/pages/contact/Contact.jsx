@@ -74,10 +74,10 @@ const Contact = () => {
   };
 
   await emailjs.send(
-    'service_49s1f8h',      // ✅ Your actual Service ID
-    'template_5tkrj58',     // ✅ Your actual Template ID
+    process.env.REACT_APP_EMAILJS_SERVICE_ID,
+    process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
     emailParams,
-    'tRaPS2O2CC5hWbEqo'     // ✅ Your actual Public Key
+    process.env.REACT_APP_EMAILJS_PUBLIC_KEY
   );
 
   // 3. Reset form + show success
