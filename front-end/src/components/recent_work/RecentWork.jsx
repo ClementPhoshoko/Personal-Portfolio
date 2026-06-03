@@ -8,22 +8,11 @@ const RecentWork = ({ projects = defaultProjects, title = "Some of my work" }) =
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [mediaLoaded, setMediaLoaded] = useState(new Set([0])); // Track loaded media
   const videoRefs = useRef([]);
   const loadedProjects = useRef(new Set([0])); // Load first project initially
 
   const totalSlides = projects.length;
-
-  // Determine which projects to load
-  const shouldLoadProject = useCallback((index) => {
-    // Load current, prev 2, next 2
-    const prevIndex1 = (index - 1 + totalSlides) % totalSlides;
-    const prevIndex2 = (index - 2 + totalSlides) % totalSlides;
-    const nextIndex1 = (index + 1) % totalSlides;
-    const nextIndex2 = (index + 2) % totalSlides;
-    
-    const indicesToLoad = [index, prevIndex1, prevIndex2, nextIndex1, nextIndex2];
-    return indicesToLoad.includes(index);
-  }, [totalSlides]);
 
   useEffect(() => {
     // Mark nearby projects as loaded
@@ -49,6 +38,10 @@ const RecentWork = ({ projects = defaultProjects, title = "Some of my work" }) =
       }
     });
   }, [currentIndex, totalSlides]);
+
+  const handleMediaLoad = (index) => {
+    setMediaLoaded(prev => new Set([...prev, index]));
+  };
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % totalSlides);
@@ -101,6 +94,10 @@ const RecentWork = ({ projects = defaultProjects, title = "Some of my work" }) =
   };
 
   const isActive = (index) => index === currentIndex;
+  const isVisible = (index) => {
+    const offset = getOffset(index);
+    return Math.abs(offset) <= 2;
+  };
 
   return (
     <div className="recent-work-section">
@@ -120,25 +117,37 @@ const RecentWork = ({ projects = defaultProjects, title = "Some of my work" }) =
           >
             <div className="project-media">
               {loadedProjects.current.has(index) ? (
-                project.type === 'video' ? (
-                  <video 
-                    ref={(el) => videoRefs.current[index] = el}
-                    src={project.src} 
-                    alt={project.title}
-                    playsInline
-                    loop
-                    muted
-                    preload="metadata"
-                    draggable={false}
-                  />
-                ) : (
-                  <img 
-                    src={project.src} 
-                    alt={project.title} 
-                    loading="lazy"
-                    draggable={false}
-                  />
-                )
+                <>
+                  {/* Show skeleton while loading */}
+                  {!mediaLoaded.has(index) && isVisible(index) && (
+                    <div className="skeleton-loader"></div>
+                  )}
+                  
+                  {/* Actual media */}
+                  {project.type === 'video' ? (
+                    <video 
+                      ref={(el) => videoRefs.current[index] = el}
+                      src={project.src} 
+                      alt={project.title}
+                      playsInline
+                      loop
+                      muted
+                      preload="metadata"
+                      draggable={false}
+                      onLoadedData={() => handleMediaLoad(index)}
+                      style={{ opacity: mediaLoaded.has(index) ? 1 : 0 }}
+                    />
+                  ) : (
+                    <img 
+                      src={project.src} 
+                      alt={project.title} 
+                      loading="lazy"
+                      draggable={false}
+                      onLoad={() => handleMediaLoad(index)}
+                      style={{ opacity: mediaLoaded.has(index) ? 1 : 0 }}
+                    />
+                  )}
+                </>
               ) : (
                 <div className="project-media-placeholder"></div>
               )}
