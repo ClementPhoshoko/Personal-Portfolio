@@ -121,47 +121,59 @@ const Contact = () => {
         <div className="contact-form-container">
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="form-label">Your name</label>
+              <label className="form-label" htmlFor="contact-name">Your name</label>
               <input 
+                id="contact-name"
                 type="text" 
                 name="name"
+                autoComplete="name"
+                aria-describedby={errors.name ? "contact-name-error" : undefined}
+                aria-invalid={!!errors.name}
                 className="form-input"
                 placeholder=""
                 value={formData.name}
                 onChange={handleChange}
               />
-              <p className="error-text">
+              <p className="error-text" id="contact-name-error" role="alert">
                 {errors.name}
               </p>
 
             </div>
             
             <div className="form-group">
-              <label className="form-label">Your email</label>
+              <label className="form-label" htmlFor="contact-email">Your email</label>
               <input 
+                id="contact-email"
                 type="email" 
                 name="email"
+                autoComplete="email"
+                aria-describedby={errors.email ? "contact-email-error" : undefined}
+                aria-invalid={!!errors.email}
                 className="form-input"
                 placeholder=""
                 value={formData.email}
                 onChange={handleChange}
               />
-              <p className="error-text">
+              <p className="error-text" id="contact-email-error" role="alert">
                 {errors.email}
               </p>
             </div>
             
             <div className="form-group">
-              <label className="form-label">Message</label>
+              <label className="form-label" htmlFor="contact-message">Message</label>
               <textarea 
+                id="contact-message"
                 name="message"
+                autoComplete="off"
+                aria-describedby={errors.message ? "contact-message-error" : undefined}
+                aria-invalid={!!errors.message}
                 className="form-textarea"
                 placeholder=""
                 rows="4"
                 value={formData.message}
                 onChange={handleChange}
               ></textarea>
-              <p className="error-text">
+              <p className="error-text" id="contact-message-error" role="alert">
                 {errors.message}
               </p>
             </div>
