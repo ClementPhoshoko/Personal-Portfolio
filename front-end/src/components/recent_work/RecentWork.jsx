@@ -144,7 +144,12 @@ const RecentWork = ({ projects = defaultProjects, title = "Some of my work" }) =
                       loading="lazy"
                       draggable={false}
                       onLoad={() => handleMediaLoad(index)}
-                      style={{ opacity: mediaLoaded.has(index) ? 1 : 0 }}
+                      style={{ 
+                        opacity: mediaLoaded.has(index) ? 1 : 0,
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain'
+                      }}
                     />
                   )}
                 </>

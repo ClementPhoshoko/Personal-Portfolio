@@ -1,7 +1,7 @@
 export const projects = [
   {
     type: 'image',
-    src: '/assets/recent_work/1.png',
+    src: '/assets/recent_work/1.webp',
     title: 'Project One',
     description: [
       'An innovative web application showcasing modern design principles and seamless user interactions.'
@@ -10,7 +10,7 @@ export const projects = [
   },
   {
     type: 'image',
-    src: '/assets/recent_work/2.png',
+    src: '/assets/recent_work/2.webp',
     title: 'Project Two',
     description: [
       'A responsive design masterpiece that adapts perfectly to any screen size.',
@@ -20,7 +20,7 @@ export const projects = [
   },
   {
     type: 'image',
-    src: '/assets/recent_work/3.png',
+    src: '/assets/recent_work/3.webp',
     title: 'Project Three',
     description: [
       'Full-stack development at its finest with robust backend APIs.'
@@ -29,7 +29,7 @@ export const projects = [
   },
   {
     type: 'image',
-    src: '/assets/recent_work/4.png',
+    src: '/assets/recent_work/4.webp',
     title: 'Project Four'
   },
   {
@@ -44,7 +44,7 @@ export const projects = [
   },
   {
     type: 'image',
-    src: '/assets/recent_work/8.png',
+    src: '/assets/recent_work/8.webp',
     title: 'Project Eight',
     description: [
       'Mobile-first approach ensuring perfect experience on smartphones and tablets.'
@@ -53,12 +53,12 @@ export const projects = [
   },
   {
     type: 'image',
-    src: '/assets/recent_work/9.png',
+    src: '/assets/recent_work/9.webp',
     title: 'Project Nine'
   },
   {
     type: 'image',
-    src: '/assets/recent_work/10.png',
+    src: '/assets/recent_work/10.webp',
     title: 'Project Ten',
     description: [
       'E-commerce platform with secure payment processing and inventory management.',
@@ -68,7 +68,7 @@ export const projects = [
   },
   {
     type: 'image',
-    src: '/assets/recent_work/11.png',
+    src: '/assets/recent_work/11.webp',
     title: 'Project Eleven',
     description: [
       'Social media application with real-time messaging and notifications.'
