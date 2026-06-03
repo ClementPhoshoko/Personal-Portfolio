@@ -39,17 +39,24 @@ const RecentWork = ({ projects, title = "Some of my work" }) => {
     }
   };
 
-  // Determine the correct layer class for each slide
-  const getLayerClass = (projectIndex) => {
-    // Calculate relative offset with proper circular wrap-around
-    let offset = (projectIndex - currentIndex + totalSlides) % totalSlides;
-    
-    // Normalize offset to -2, -1, 0, 1, 2 range
-    if (offset > totalSlides / 2) offset -= totalSlides;
+  const getOffset = (projectIndex) => {
+    let offset = projectIndex - currentIndex;
+    if (offset > totalSlides / 2) {
+      offset -= totalSlides;
+    } else if (offset < -totalSlides / 2) {
+      offset += totalSlides;
+    }
+    return offset;
+  };
 
+  const getLayerClass = (projectIndex) => {
+    const offset = getOffset(projectIndex);
+    
     if (offset === 0) return 'project-slide-active';
     if (offset === -1) return 'project-slide-prev';
     if (offset === -2) return 'project-slide-prev-prev';
+    if (offset === 1) return 'project-slide-next';
+    if (offset === 2) return 'project-slide-next-next';
     return 'project-slide-hidden';
   };
 
@@ -64,7 +71,6 @@ const RecentWork = ({ projects, title = "Some of my work" }) => {
         onTouchStart={handleDragStart}
         onTouchEnd={handleDragEnd}
       >
-        {/* Render all slides */}
         {projects.map((project, index) => (
           <div 
             key={index} 
@@ -113,7 +119,6 @@ const RecentWork = ({ projects, title = "Some of my work" }) => {
           </div>
         ))}
 
-        {/* Navigation buttons */}
         <button className="carousel-btn prev-btn" onClick={handlePrev}>
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
@@ -121,7 +126,6 @@ const RecentWork = ({ projects, title = "Some of my work" }) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </button>
 
-        {/* Indicators */}
         <div className="carousel-indicators">
           {projects.map((_, index) => (
             <button

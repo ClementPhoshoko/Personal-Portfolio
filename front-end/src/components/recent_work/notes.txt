@@ -4,29 +4,43 @@
 
 ### Active Slide
 - Position: Center-aligned
+- Scale: 100%
 - Opacity: 100% (full visibility)
 - Content: Complete project information visible
 
 ### Preview Slides
-- Quantity: 2 preview slides visible
-- Position: Left side of active slide
-- Visual Treatment:
-  - Reduced scale: 92% (first preview) and 85% (second preview)
-  - Semi-transparent: 70% and 40% opacity respectively
+- Quantity: 2 preview slides visible on left AND 2 on right
+- Left previews:
+  - First preview (prev): translateX(-10%), scale(0.9), opacity 70%
+  - Second preview (prev-prev): translateX(-20%), scale(0.8), opacity 40%
   - Project information hidden
+- Right previews:
+  - First preview (next): translateX(10%), scale(0.9), opacity 70%
+  - Second preview (next-next): translateX(20%), scale(0.8), opacity 40%
+  - Project information hidden
+- All other slides are hidden off-screen
 
 ## Interaction Behavior
 
 ### Next Button
-1. Current active slide animates out to the right (off-screen)
-2. Next preview slide from the left animates in to center position
-3. New slide becomes active with full opacity and visible project information
-4. The previous active slide moves to hidden off-screen position
+1. Current active slide moves to next (right) preview position
+2. Next preview slides move forward in line
+3. Closest next preview slide animates into center position
+4. New slide becomes active with full opacity and visible project information
+5. All other slides adjust their positions accordingly
+
+### Previous Button
+1. Current active slide moves to prev (left) preview position
+2. Prev preview slides move backward in line
+3. Closest prev preview slide animates into center position
+4. New slide becomes active with full opacity and visible project information
 
 ### Circular Navigation
 - Slides wrap infinitely without end
 - After the last project, the first project appears next
 - Creates an illusion of an endless carousel
+- Works with drag/swipe gestures as well
+- Supports any number of projects
 
 ## Visual Transitions
 - Duration: 600ms
