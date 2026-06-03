@@ -1,0 +1,804 @@
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Global box-sizing for efficient layout calculations */
+.recent-work-section *,
+.recent-work-section *::before,
+.recent-work-section *::after {
+  box-sizing: border-box;
+}
+
+.recent-work-section,
+.project-carousel-container,
+.project-slide,
+.project-media,
+.project-info,
+.project-title,
+.project-descriptions,
+.project-description,
+.project-tech,
+.tech-tag {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-drag: none;
+  -webkit-user-drag: none;
+  /* Performance optimizations */
+  font-display: swap;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.recent-work-section {
+  width: 100%;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  /* Performance optimizations */
+  contain: layout style paint;
+}
+
+.recent-work-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.05em;
+  margin: 0;
+  /* GPU acceleration */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.project-carousel-container {
+  width: 100%;
+  max-width: 1400px;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.project-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+  /* GPU acceleration for smooth animations */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Hidden state (off-screen right) */
+.project-slide-hidden {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transform: translateX(150%) scale(0.8);
+}
+
+/* Previous slides (left side) */
+.project-slide-prev-prev {
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
+  transform: translateX(-25%) scale(0.85);
+}
+
+.project-slide-prev {
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 2;
+  transform: translateX(-10%) scale(0.92);
+}
+
+/* Active slide (center) */
+.project-slide-active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 10;
+  transform: translateX(0) scale(1);
+}
+
+/* Project info - only visible on active */
+.project-slide .project-info {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.project-slide-active .project-info {
+  opacity: 1;
+  visibility: visible;
+}
+
+.project-media {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.project-media img,
+.project-media video {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-info {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 2rem;
+  box-sizing: border-box;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.project-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.project-info-bottom {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.project-content-left {
+  flex: 1;
+}
+
+.project-tech {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 150px;
+}
+
+.tech-tag {
+  padding: 0.4rem 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+  margin: 0;
+  font-weight: 400;
+}
+
+.tech-tag:hover {
+  color: #64ffda;
+}
+
+.project-descriptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.project-description {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  /* GPU acceleration for smooth interactions */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.prev-btn {
+  left: 1rem;
+}
+
+.next-btn {
+  right: 1rem;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+  position: relative;
+  z-index: 100;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* GPU acceleration */
+  will-change: transform, background;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.indicator.active {
+  background: #64ffda;
+  transform: scale(1.2);
+}
+
+.indicator:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Large Monitors & High-Resolution Displays (1440px+) */
+@media (min-width: 1440px) {
+  .recent-work-section {
+    padding: 3rem 4rem 1.5rem 4rem;
+    gap: 3rem;
+  }
+
+  .recent-work-title {
+    font-size: 3rem;
+    letter-spacing: 0.08em;
+  }
+
+  .project-carousel-container {
+    height: 700px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .recent-work-section {
+    padding: 4rem 8rem 2rem 8rem;
+    gap: 3.5rem;
+  }
+
+  .recent-work-title {
+    font-size: 3.2rem;
+    letter-spacing: 0.08em;
+  }
+
+  .project-carousel-container {
+    max-width: 1700px;
+    height: 750px;
+  }
+
+  .project-title {
+    font-size: 2rem;
+  }
+
+  .project-description {
+    font-size: 1.05rem;
+  }
+
+  .tech-tag {
+    font-size: 0.85rem;
+  }
+}
+
+/* Standard Laptops (1200px - 1439px) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .recent-work-section {
+    padding: 3rem 2.5rem 1.25rem 2.5rem;
+    gap: 2.5rem;
+  }
+
+  .recent-work-title {
+    font-size: 2.75rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .recent-work-section {
+    padding: 2.5rem 1.75rem 1rem 1.75rem;
+    gap: 2rem;
+  }
+
+  .recent-work-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .recent-work-section {
+    padding: 2rem 1.5rem 0.875rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .recent-work-title {
+    font-size: 2rem;
+  }
+
+  .project-carousel-container {
+    height: 500px;
+  }
+}
+
+@media (max-width: 992px) {
+  .project-tech {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .recent-work-section {
+    padding: 1.75rem 1rem 0.75rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .recent-work-title {
+    font-size: 1.8rem;
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .prev-btn {
+    left: 0.5rem;
+  }
+
+  .next-btn {
+    right: 0.5rem;
+  }
+
+  .project-info-bottom {
+    flex-direction: column;
+  }
+
+  .project-carousel-container {
+    height: 450px;
+  }
+
+  .project-descriptions {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .recent-work-section {
+    padding: 1.5rem 0.75rem 0.5rem 0.75rem;
+    gap: 1.25rem;
+  }
+
+  .recent-work-title {
+    font-size: 1.6rem;
+  }
+
+  .project-title {
+    font-size: 1.3rem;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+  }
+
+  .project-media {
+    max-width: 100%;
+  }
+
+  .project-carousel-container {
+    height: 400px;
+  }
+
+  .project-info {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .recent-work-section {
+    padding: 1.25rem 0.5rem 0.5rem 0.5rem;
+    gap: 1rem;
+  }
+
+  .recent-work-title {
+    font-size: 1.4rem;
+  }
+
+  .project-title {
+    font-size: 1.15rem;
+  }
+
+  .project-description {
+    font-size: 0.85rem;
+  }
+
+  .carousel-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.875rem;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  .project-carousel-container {
+    height: 350px;
+  }
+
+  .project-info {
+    padding: 1.25rem;
+  }
+}
+
+/* ========================================
+   COMPREHENSIVE RESPONSIVE DESIGN
+   ======================================== */
+
+/* Samsung Galaxy S Series & Small Mobile Devices (320px - 360px) */
+@media (min-width: 320px) and (max-width: 360px) {
+  .recent-work-section {
+    padding: 1rem 0.65rem 0.4rem 0.65rem;
+    gap: 0.9rem;
+  }
+
+  .recent-work-title {
+    font-size: 1.2rem;
+  }
+
+  .project-carousel-container {
+    height: 320px;
+  }
+
+  .project-info {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .project-title {
+    font-size: 1rem;
+  }
+
+  .project-description {
+    font-size: 0.75rem;
+  }
+
+  .tech-tag {
+    font-size: 0.7rem;
+  }
+
+  .carousel-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .indicator {
+    width: 9px;
+    height: 9px;
+  }
+}
+
+/* Samsung Galaxy A Series & iPhone SE (361px - 414px) */
+@media (min-width: 361px) and (max-width: 414px) {
+  .recent-work-section {
+    padding: 1.1rem 0.7rem 0.45rem 0.7rem;
+    gap: 1rem;
+  }
+
+  .recent-work-title {
+    font-size: 1.3rem;
+  }
+
+  .project-carousel-container {
+    height: 340px;
+  }
+
+  .project-info {
+    padding: 1.1rem;
+    gap: 1.05rem;
+  }
+
+  .project-title {
+    font-size: 1.05rem;
+  }
+
+  .project-description {
+    font-size: 0.78rem;
+  }
+
+  .tech-tag {
+    font-size: 0.72rem;
+  }
+
+  .carousel-btn {
+    width: 33px;
+    height: 33px;
+    font-size: 0.82rem;
+  }
+}
+
+/* iPhone 12/13/14 Standard & Samsung Galaxy S21+ (415px - 428px) */
+@media (min-width: 415px) and (max-width: 428px) {
+  .recent-work-section {
+    padding: 1.2rem 0.75rem 0.5rem 0.75rem;
+    gap: 1.1rem;
+  }
+
+  .recent-work-title {
+    font-size: 1.35rem;
+  }
+
+  .project-carousel-container {
+    height: 355px;
+  }
+
+  .project-info {
+    padding: 1.15rem;
+    gap: 1.08rem;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+  }
+
+  .project-description {
+    font-size: 0.8rem;
+  }
+
+  .tech-tag {
+    font-size: 0.74rem;
+  }
+
+  .carousel-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.84rem;
+  }
+}
+
+/* Large Mobile & Small Tablets (429px - 767px) */
+@media (min-width: 429px) and (max-width: 767px) {
+  .recent-work-section {
+    padding: 1.4rem 0.85rem 0.6rem 0.85rem;
+    gap: 1.2rem;
+  }
+
+  .recent-work-title {
+    font-size: 1.5rem;
+  }
+
+  .project-carousel-container {
+    height: 380px;
+  }
+
+  .project-info {
+    padding: 1.3rem;
+    gap: 1.15rem;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+  }
+
+  .project-description {
+    font-size: 0.85rem;
+  }
+
+  .tech-tag {
+    font-size: 0.78rem;
+  }
+
+  .carousel-btn {
+    width: 37px;
+    height: 37px;
+    font-size: 0.87rem;
+  }
+}
+
+/* iPad & Medium Tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .recent-work-section {
+    padding: 2.25rem 1.5rem 0.9rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .recent-work-title {
+    font-size: 2rem;
+  }
+
+  .project-carousel-container {
+    height: 480px;
+  }
+
+  .project-info {
+    padding: 1.75rem;
+    gap: 1.15rem;
+  }
+
+  .project-title {
+    font-size: 1.6rem;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+  }
+
+  .tech-tag {
+    font-size: 0.82rem;
+  }
+}
+
+/* Large Tablets & Small Laptops (1025px - 1199px) */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .recent-work-section {
+    padding: 2.5rem 2rem 1rem 2rem;
+    gap: 2.25rem;
+  }
+
+  .recent-work-title {
+    font-size: 2.3rem;
+  }
+
+  .project-carousel-container {
+    height: 550px;
+  }
+}
+
+/* 4K Monitors & Ultra-High Resolution (1920px - 2560px) */
+@media (min-width: 1920px) and (max-width: 2560px) {
+  .recent-work-section {
+    padding: 4rem 3rem 1.75rem 3rem;
+    gap: 3.5rem;
+  }
+
+  .recent-work-title {
+    font-size: 3.25rem;
+  }
+
+  .project-carousel-container {
+    max-width: 1700px;
+    height: 780px;
+  }
+}
+
+/* 8K & Ultra-Wide Displays (2561px+) */
+@media (min-width: 2561px) {
+  .recent-work-section {
+    padding: 5rem 4rem 2.25rem 4rem;
+    gap: 4rem;
+  }
+
+  .recent-work-title {
+    font-size: 3.5rem;
+  }
+
+  .project-carousel-container {
+    max-width: 2000px;
+    height: 850px;
+  }
+}
+
+/* ========================================
+   PERFORMANCE & LOADING OPTIMIZATIONS
+   ======================================== */
+
+/* Optimize mobile performance */
+@media (max-width: 768px) {
+  .recent-work-section {
+    contain: layout style paint;
+  }
+
+  /* Reduce will-change usage on mobile for better performance */
+  .recent-work-title,
+  .project-slide,
+  .carousel-btn,
+  .indicator {
+    will-change: auto;
+  }
+
+  .recent-work-title:hover,
+  .project-slide:hover,
+  .carousel-btn:hover,
+  .indicator:hover {
+    will-change: transform;
+  }
+}
+
+/* High-DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .recent-work-title,
+  .project-title,
+  .project-description,
+  .tech-tag {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .project-slide,
+  .carousel-btn,
+  .indicator {
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+}
+
+/* Dark mode optimization */
+@media (prefers-color-scheme: dark) {
+  /* Already optimized for dark mode */
+}
+
+/* Print optimization */
+@media print {
+  .recent-work-section {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+
+  .project-carousel-container {
+    display: none !important;
+  }
+}

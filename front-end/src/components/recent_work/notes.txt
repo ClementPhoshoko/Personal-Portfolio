@@ -1,0 +1,34 @@
+# Recent Work Carousel - Design & Functionality
+
+## Layout & Visual States
+
+### Active Slide
+- Position: Center-aligned
+- Opacity: 100% (full visibility)
+- Content: Complete project information visible
+
+### Preview Slides
+- Quantity: 2 preview slides visible
+- Position: Left side of active slide
+- Visual Treatment:
+  - Reduced scale: 92% (first preview) and 85% (second preview)
+  - Semi-transparent: 70% and 40% opacity respectively
+  - Project information hidden
+
+## Interaction Behavior
+
+### Next Button
+1. Current active slide animates out to the right (off-screen)
+2. Next preview slide from the left animates in to center position
+3. New slide becomes active with full opacity and visible project information
+4. The previous active slide moves to hidden off-screen position
+
+### Circular Navigation
+- Slides wrap infinitely without end
+- After the last project, the first project appears next
+- Creates an illusion of an endless carousel
+
+## Visual Transitions
+- Duration: 600ms
+- Easing: Cubic-bezier(0.16, 1, 0.3, 1) for smooth, elastic-like motion
+- Applies to position, scale, and opacity properties simultaneously

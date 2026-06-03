@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import './Home.css';
 import SubscribeModal from '../../components/subscribe/SubscribeModal';
+import RecentWork from '../../components/recent_work/RecentWork';
 
 const programmingLanguages = [
   { name: 'JavaScript', icon: '/assets/language_icons/javascript-logo-svgrepo-com.svg' },
@@ -22,6 +23,43 @@ const programmingLanguages = [
   { name: 'Assembly', icon: '/assets/language_icons/assembly-svgrepo-com.svg' },
   { name: 'Git', icon: '/assets/language_icons/git-svgrepo-com.svg' },
   { name: 'VS Code', icon: '/assets/language_icons/vs-code-svgrepo-com.svg' }
+];
+
+// Sample projects - replace these with your actual projects!
+const projects = [
+  {
+    type: 'image',
+    src: '/assets/images/reactJscode.png',
+    title: 'Portfolio Website',
+    description: [
+      'A modern, fully responsive personal portfolio website built from scratch using React, featuring smooth scroll animations, glassmorphism design elements, and an interactive project carousel with drag-and-drop functionality. This website showcases my work, skills, and professional journey in a visually appealing and user-friendly manner.',
+      'The contact form is seamlessly integrated with EmailJS for direct email communication and Firebase Firestore for storing submissions securely. Every component is optimized for performance and accessibility, ensuring a great experience for all visitors across all device sizes and platforms.'
+    ],
+    techStackTitle: 'Tech Stack',
+    techStack: ['React', 'JavaScript', 'CSS', 'Firebase', 'EmailJS']
+  },
+  {
+    type: 'image',
+    src: '/assets/images/reactJscode.png',
+    title: 'Project Alpha',
+    description: [
+      'A comprehensive full-stack web application built with Node.js backend and React frontend, featuring robust JWT-based user authentication, real-time data synchronization using Socket.IO, and a modern, intuitive user interface with responsive design. The application supports complex data operations, including CRUD functionality with validation.',
+      'MongoDB is used as the primary database for flexible data storage, while Express.js handles the API routing and middleware. The frontend is built with reusable components, state management using React hooks, and smooth animations for an exceptional user experience that scales beautifully on all devices.'
+    ],
+    techStackTitle: 'Built With',
+    techStack: ['Node.js', 'Express.js', 'React', 'MongoDB', 'Socket.IO']
+  },
+  {
+    type: 'image',
+    src: '/assets/images/reactJscode.png',
+    title: 'Data Dashboard',
+    description: [
+      'An interactive, real-time data visualization dashboard built with React and D3.js that transforms complex datasets into beautiful, easy-to-understand charts, graphs, and visual representations. The dashboard features multiple chart types, interactive data filtering, and custom date range selection.',
+      'Advanced features include data export functionality, responsive layouts that adapt to any screen size, and smooth transitions between data views. The application is optimized for performance, handling large datasets efficiently while maintaining a fluid and intuitive user experience.'
+    ],
+    techStackTitle: 'Technologies',
+    techStack: ['React', 'D3.js', 'JavaScript', 'CSS']
+  }
 ];
 
 const Home = () => {
@@ -125,6 +163,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+          <RecentWork projects={projects} title="Featured Projects" />
         </div>
     </div>
   );

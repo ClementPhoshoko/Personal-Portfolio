@@ -7,6 +7,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 /* Optimize font loading and rendering */
 .home-container,
 .greeting-name,
@@ -70,6 +76,8 @@
   background: none;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .top-left-container {
@@ -165,27 +173,70 @@
   }
 }
 
+.languages-scroll-container {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  box-sizing: border-box;
+  margin-top: 2rem;
+}
+
+.languages-scroll {
+  display: flex;
+  animation: scrollLanguages 30s linear infinite;
+  width: max-content;
+}
+
+@keyframes scrollLanguages {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.language-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+}
+
+.language-name {
+  color: white;
+  font-size: 0.9rem;
+}
+
 .main-container {
   width: 100%;
-  padding: 4rem 2rem;
+  padding: 3rem 2rem 0rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2rem;
   position: relative;
+  overflow-x: hidden;
 }
 
 /* Main container large screen adjustments */
 @media (min-width: 1440px) {
   .main-container {
-    padding: 5rem 4rem;
+    padding: 5rem 4rem 0rem 4rem;
     gap: 2.5rem;
   }
 }
 
 @media (min-width: 1920px) {
   .main-container {
-    padding: 5rem 8rem;
+    padding: 5rem 8rem 0rem 8rem;
     gap: 2.75rem;
     width: 100%;
   }
@@ -194,21 +245,21 @@
 /* Main container responsive adjustments */
 @media (max-width: 1200px) {
   .main-container {
-    padding: 3.5rem 1.75rem;
+    padding: 3.5rem 1.75rem 0rem 1.75rem;
     gap: 1.75rem;
   }
 }
 
 @media (max-width: 992px) {
   .main-container {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1.5rem 0rem 1.5rem;
     gap: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .main-container {
-    padding: 2.5rem 1rem;
+    padding: 2.5rem 1rem 0rem 1rem;
     gap: 1.25rem;
     align-items: center;
   }
@@ -216,14 +267,14 @@
 
 @media (max-width: 600px) {
   .main-container {
-    padding: 2rem 0.75rem;
+    padding: 2rem 0.75rem 0rem 0.75rem;
     gap: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .main-container {
-    padding: 1.5rem 0.5rem;
+    padding: 1.5rem 0.5rem 0rem 0.5rem;
     gap: 0.875rem;
   }
 }
@@ -289,7 +340,6 @@
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0);
   backface-visibility: hidden;
-  white-space: nowrap;
 }
 
 .greeting-name:hover {
@@ -317,7 +367,6 @@
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0);
   backface-visibility: hidden;
-  white-space: nowrap;
 }
 
 .greeting-tagline:hover {
@@ -1300,7 +1349,7 @@
 /* Services section styles */
 .services-section {
   width: 100%;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 0rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1390,7 +1439,7 @@
 /* Services section large screen design */
 @media (min-width: 1440px) {
   .services-section {
-    padding: 5rem 4rem;
+    padding: 5rem 4rem 0rem 4rem;
     gap: 4rem;
   }
   
@@ -1423,7 +1472,7 @@
 
 @media (min-width: 1920px) {
   .services-section {
-    padding: 5rem 8rem;
+    padding: 5rem 8rem 0rem 8rem;
     gap: 4.5rem;
     max-width: 1700px;
     margin: 0 auto;
@@ -1489,7 +1538,7 @@
 
 @media (max-width: 768px) {
   .services-section {
-    padding: 3rem 1rem;
+    padding: 3rem 1rem 0rem 1rem;
     gap: 2rem;
   }
   
@@ -1519,7 +1568,7 @@
 
 @media (max-width: 600px) {
   .services-section {
-    padding: 2.5rem 1rem;
+    padding: 2.5rem 1rem 0rem 1rem;
     gap: 1.5rem;
   }
   
@@ -1549,7 +1598,7 @@
 
 @media (max-width: 480px) {
   .services-section {
-    padding: 2rem 0.75rem;
+    padding: 2rem 0.75rem 0rem 0.75rem;
     gap: 1.25rem;
   }
   
