@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import './RecentWork.css';
@@ -8,8 +8,47 @@ const RecentWork = ({ projects = defaultProjects, title = "Some of my work" }) =
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const videoRefs = useRef([]);
+  const loadedProjects = useRef(new Set([0])); // Load first project initially
 
   const totalSlides = projects.length;
+
+  // Determine which projects to load
+  const shouldLoadProject = useCallback((index) => {
+    // Load current, prev 2, next 2
+    const prevIndex1 = (index - 1 + totalSlides) % totalSlides;
+    const prevIndex2 = (index - 2 + totalSlides) % totalSlides;
+    const nextIndex1 = (index + 1) % totalSlides;
+    const nextIndex2 = (index + 2) % totalSlides;
+    
+    const indicesToLoad = [index, prevIndex1, prevIndex2, nextIndex1, nextIndex2];
+    return indicesToLoad.includes(index);
+  }, [totalSlides]);
+
+  useEffect(() => {
+    // Mark nearby projects as loaded
+    [currentIndex, 
+     (currentIndex - 1 + totalSlides) % totalSlides,
+     (currentIndex - 2 + totalSlides) % totalSlides,
+     (currentIndex + 1) % totalSlides,
+     (currentIndex + 2) % totalSlides
+    ].forEach(idx => {
+      loadedProjects.current.add(idx);
+    });
+
+    // Play active video, pause others
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        if (index === currentIndex) {
+          video.play().catch(() => {
+            // Ignore autoplay errors
+          });
+        } else {
+          video.pause();
+        }
+      }
+    });
+  }, [currentIndex, totalSlides]);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % totalSlides);
@@ -61,6 +100,8 @@ const RecentWork = ({ projects = defaultProjects, title = "Some of my work" }) =
     return 'project-slide-hidden';
   };
 
+  const isActive = (index) => index === currentIndex;
+
   return (
     <div className="recent-work-section">
       <h2 className="recent-work-title">{title}</h2>
@@ -78,44 +119,55 @@ const RecentWork = ({ projects = defaultProjects, title = "Some of my work" }) =
             className={`project-slide ${getLayerClass(index)}`}
           >
             <div className="project-media">
-              {project.type === 'video' ? (
-                <video 
-                  src={project.src} 
-                  alt={project.title}
-                  controls
-                  playsInline
-                  loop
-                  draggable={false}
-                />
+              {loadedProjects.current.has(index) ? (
+                project.type === 'video' ? (
+                  <video 
+                    ref={(el) => videoRefs.current[index] = el}
+                    src={project.src} 
+                    alt={project.title}
+                    playsInline
+                    loop
+                    muted
+                    preload="metadata"
+                    draggable={false}
+                  />
+                ) : (
+                  <img 
+                    src={project.src} 
+                    alt={project.title} 
+                    loading="lazy"
+                    draggable={false}
+                  />
+                )
               ) : (
-                <img 
-                  src={project.src} 
-                  alt={project.title} 
-                  draggable={false}
-                />
+                <div className="project-media-placeholder"></div>
               )}
-              <div className="project-info">
-                <h3 className="project-title">{project.title}</h3>
-                <div className="project-info-bottom">
-                  <div className="project-content-left">
-                    <div className="project-descriptions">
-                      {Array.isArray(project.description) 
-                        ? project.description.map((paragraph, i) => (
-                          <p key={i} className="project-description">{paragraph}</p>
-                        ))
-                        : <p className="project-description">{project.description}</p>
-                      }
-                    </div>
+              {isActive(index) && (project.description || project.techStack) && (
+                <div className="project-info">
+                  <h3 className="project-title">{project.title}</h3>
+                  <div className="project-info-bottom">
+                    {project.description && (
+                      <div className="project-content-left">
+                        <div className="project-descriptions">
+                          {Array.isArray(project.description) 
+                            ? project.description.map((paragraph, i) => (
+                              <p key={i} className="project-description">{paragraph}</p>
+                            ))
+                            : <p className="project-description">{project.description}</p>
+                          }
+                        </div>
+                      </div>
+                    )}
+                    {project.techStack && (
+                      <div className="project-tech">
+                        {project.techStack.map((tech, i) => (
+                          <span key={i} className="tech-tag">{tech}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  {project.techStack && (
-                    <div className="project-tech">
-                      {project.techStack.map((tech, i) => (
-                        <span key={i} className="tech-tag">{tech}</span>
-                      ))}
-                    </div>
-                  )}
                 </div>
-              </div>
+              )}
             </div>
           </div>
         ))}

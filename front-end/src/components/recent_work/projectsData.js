@@ -33,13 +33,14 @@ export const projects = [
     title: 'Project Four'
   },
   {
-    type: 'image',
-    src: '/assets/recent_work/5.png',
-    title: 'Project Five',
-    description: [
-      'Data visualization dashboard with interactive charts and real-time updates.'
-    ],
-    techStack: ['React', 'D3.js']
+    type: 'video',
+    src: '/assets/recent_work/6.mp4',
+    title: 'Project Six'
+  },
+  {
+    type: 'video',
+    src: '/assets/recent_work/7.mp4',
+    title: 'Project Seven'
   },
   {
     type: 'image',
