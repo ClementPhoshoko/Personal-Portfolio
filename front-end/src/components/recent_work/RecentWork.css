@@ -92,18 +92,20 @@
 .project-media {
   width: 100%;
   max-width: 900px;
+  height: 500px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-media img,
 .project-media video {
   width: 100%;
-  height: auto;
-  max-height: 100%;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
   display: block;
 }
 
@@ -166,23 +168,28 @@
 
 .project-tech {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  min-width: 150px;
+  max-width: 200px;
+  justify-content: flex-end;
 }
 
 .tech-tag {
-  padding: 0.4rem 0;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.85);
+  padding: 0.4rem 0.8rem;
+  background: #2b597d;
+  color: white;
   font-size: 0.8rem;
   transition: all 0.2s ease;
-  margin: 0;
+  margin: 0.2rem 0;
   font-weight: 400;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .tech-tag:hover {
-  color: #64ffda;
+  background: #3a6f98;
+  transform: translateY(-1px);
 }
 
 /* Navigation buttons */
@@ -193,9 +200,8 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #2b597d;
+  border: none;
   color: white;
   font-size: 1.25rem;
   cursor: pointer;
@@ -204,12 +210,12 @@
   align-items: center;
   justify-content: center;
   z-index: 100;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .carousel-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #3a6f98;
   transform: translateY(-50%) scale(1.1);
-  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .prev-btn {
@@ -235,19 +241,19 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(43, 89, 125, 0.5);
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .indicator.active {
-  background: #64ffda;
+  background: #2b597d;
   transform: scale(1.2);
 }
 
 .indicator:hover:not(.active) {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(43, 89, 125, 0.8);
   transform: scale(1.1);
 }
 
@@ -261,6 +267,9 @@
   }
   .project-carousel-container {
     height: 700px;
+  }
+  .project-media {
+    height: 600px;
   }
 }
 
@@ -293,6 +302,7 @@
   }
   .project-media {
     max-width: 90%;
+    height: 380px;
   }
   .project-slide-prev {
     transform: translateX(-10%) scale(0.85);
@@ -317,5 +327,8 @@
   }
   .project-carousel-container {
     height: 350px;
+  }
+  .project-media {
+    height: 280px;
   }
 }

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import './RecentWork.css';
+import { projects as defaultProjects } from './projectsData';
 
-const RecentWork = ({ projects, title = "Some of my work" }) => {
+const RecentWork = ({ projects = defaultProjects, title = "Some of my work" }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dragStartX, setDragStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
