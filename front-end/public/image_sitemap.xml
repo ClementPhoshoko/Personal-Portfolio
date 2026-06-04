@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://clementphoshoko.vercel.app/</loc>
+    <image:image>
+      <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/1.webp</image:loc>
+      <image:title>Project One</image:title>
+      <image:caption>An innovative web application showcasing modern design principles and seamless user interactions.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/2.webp</image:loc>
+      <image:title>Project Two</image:title>
+      <image:caption>A responsive design masterpiece that adapts perfectly to any screen size. Built with accessibility in mind for all users.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/3.webp</image:loc>
+      <image:title>Project Three</image:title>
+      <image:caption>Full-stack development at its finest with robust backend APIs.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/4.webp</image:loc>
+      <image:title>Project Four</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/8.webp</image:loc>
+      <image:title>Project Eight</image:title>
+      <image:caption>Mobile-first approach ensuring perfect experience on smartphones and tablets.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/9.webp</image:loc>
+      <image:title>Project Nine</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/10.webp</image:loc>
+      <image:title>Project Ten</image:title>
+      <image:caption>E-commerce platform with secure payment processing and inventory management. Scalable architecture ready for high traffic.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/11.webp</image:loc>
+      <image:title>Project Eleven</image:title>
+      <image:caption>Social media application with real-time messaging and notifications.</image:caption>
+    </image:image>
+  </url>
+</urlset>

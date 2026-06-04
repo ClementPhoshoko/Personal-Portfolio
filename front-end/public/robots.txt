@@ -7,6 +7,7 @@ Allow: /
 # Disallow: /admin/
 # Disallow: /private/
 
-# Sitemap location
+# Sitemap locations
 Sitemap: https://clementphoshoko.vercel.app/main_sitemap.xml
+Sitemap: https://clementphoshoko.vercel.app/image_sitemap.xml
 
