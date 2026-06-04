@@ -8,5 +8,5 @@ Allow: /
 # Disallow: /private/
 
 # Sitemap location
-Sitemap: https://clementphoshoko.vercel.app/sitemap.xml
+Sitemap: https://clementphoshoko.vercel.app/main_sitemap.xml
 
