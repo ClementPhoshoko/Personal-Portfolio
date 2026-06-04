@@ -6,53 +6,54 @@
     <loc>https://clementphoshoko.vercel.app/</loc>
     <image:image>
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/1.webp</image:loc>
-      <image:title>Project One</image:title>
-      <image:caption>An innovative web application showcasing modern design principles and seamless user interactions.</image:caption>
+      <image:title>E-commerce Platform</image:title>
+      <image:caption>A sleek e-commerce experience with secure payments, smart inventory, and smooth checkout.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/2.webp</image:loc>
-      <image:title>Project Two</image:title>
-      <image:caption>A responsive design masterpiece that adapts perfectly to any screen size. Built with accessibility in mind for all users.</image:caption>
+      <image:title>E-commerce Platform</image:title>
+      <image:caption>From product concepts to full functional e-commerce sites.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/3.webp</image:loc>
-      <image:title>Project Three</image:title>
-      <image:caption>Full-stack development at its finest with robust backend APIs.</image:caption>
+      <image:title>E-commerce Platform</image:title>
+      <image:caption>Integrated Payment Gateways</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/4.webp</image:loc>
-      <image:title>Project Four</image:title>
+      <image:title>Secure JWT Authentication</image:title>
+      <image:caption>Robust authentication system with JWT tokens for secure access to protected resources</image:caption>
     </image:image>
     <video:video>
       <video:content_loc>https://clementphoshoko.vercel.app/assets/recent_work/6.mp4</video:content_loc>
-      <video:title>Project Six</video:title>
-      <video:description>Project Six showcase</video:description>
+      <video:title>Portfolio Sites</video:title>
+      <video:description>A portfolio website with a clean and responsive design, showcasing my work and skills.</video:description>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
       <video:content_loc>https://clementphoshoko.vercel.app/assets/recent_work/7.mp4</video:content_loc>
-      <video:title>Project Seven</video:title>
-      <video:description>Project Seven showcase</video:description>
+      <video:title>AI Gesture and Linguistic Meeting Platform</video:title>
+      <video:description>A meeting platform with advanced gesture recognition and linguistic processing for all people.</video:description>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <image:image>
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/8.webp</image:loc>
-      <image:title>Project Eight</image:title>
+      <image:title>Robust Notifications</image:title>
       <image:caption>Mobile-first approach ensuring perfect experience on smartphones and tablets.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/9.webp</image:loc>
-      <image:title>Project Nine</image:title>
+      <image:title>Robust Notifications</image:title>
     </image:image>
     <image:image>
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/10.webp</image:loc>
-      <image:title>Project Ten</image:title>
-      <image:caption>E-commerce platform with secure payment processing and inventory management. Scalable architecture ready for high traffic.</image:caption>
+      <image:title>Meeting Platforms</image:title>
+      <image:caption>Peer-to-peer meeting platform with secure communication channels and real-time video.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/11.webp</image:loc>
-      <image:title>Project Eleven</image:title>
-      <image:caption>Social media application with real-time messaging and notifications.</image:caption>
+      <image:title>Gesture to Speech</image:title>
+      <image:caption>A gesture recognition application that converts hand gestures into spoken language.</image:caption>
     </image:image>
   </url>
 </urlset>

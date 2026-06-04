@@ -2,77 +2,87 @@ export const projects = [
   {
     type: 'image',
     src: '/assets/recent_work/1.webp',
-    title: 'Project One',
+    title: 'E-commerce Platform',
     description: [
-      'An innovative web application showcasing modern design principles and seamless user interactions.'
+      'A sleek e-commerce experience with secure payments, smart inventory, and smooth checkout.'
     ],
-    techStack: ['React', 'JavaScript', 'CSS']
+    techStack: ['React & Node', 'PostgreSQL']
   },
   {
     type: 'image',
     src: '/assets/recent_work/2.webp',
-    title: 'Project Two',
+    title: 'E-commerce Platform',
     description: [
-      'A responsive design masterpiece that adapts perfectly to any screen size.',
-      'Built with accessibility in mind for all users.'
+      'From product concepts to full functional e-commerce sites.'
     ],
-    techStack: ['React', 'Tailwind CSS']
+    techStack: ['Responsive', 'UI/UX']
   },
   {
     type: 'image',
     src: '/assets/recent_work/3.webp',
-    title: 'Project Three',
+    title: 'E-commerce Platform',
     description: [
-      'Full-stack development at its finest with robust backend APIs.'
+      'Integrated Payment Gateways'
     ],
-    techStack: ['Node.js', 'Express', 'MongoDB']
+    techStack: ['Stripe', 'Secure Payments']
   },
   {
     type: 'image',
     src: '/assets/recent_work/4.webp',
-    title: 'Project Four'
+    title: 'Secure JWT Authentication',
+    description: [
+      'Robust authentication system with JWT tokens for secure access to protected resources'
+    ],
+    techStack: ['JWT', 'Refresh Tockens']
   },
   {
     type: 'video',
     src: '/assets/recent_work/6.mp4',
-    title: 'Project Six'
+    title: 'Porfolio Sites',
+    description: [
+      'A portfolio website with a clean and responsive design, showcasing my work and skills.'
+    ],
+    techStack: ['React & Node', 'EmailJS']
   },
   {
     type: 'video',
     src: '/assets/recent_work/7.mp4',
-    title: 'Project Seven'
+    title: 'AI Gesture and Linguistic Meeting Platform',
+    description: [
+      'A meeting platform with advanced gesture recognition and linguistic processing for all people.'
+    ],
+    techStack: ['ML', 'AI', 'NLP']
   },
   {
     type: 'image',
     src: '/assets/recent_work/8.webp',
-    title: 'Project Eight',
+    title: 'Robust Notifications',
     description: [
       'Mobile-first approach ensuring perfect experience on smartphones and tablets.'
     ],
-    techStack: ['React Native']
+    techStack: ['Notifications', 'Logging']
   },
   {
     type: 'image',
     src: '/assets/recent_work/9.webp',
-    title: 'Project Nine'
+    title: 'Robust Notifications'
   },
   {
     type: 'image',
     src: '/assets/recent_work/10.webp',
-    title: 'Project Ten',
+    title: 'Meeting Platforms',
     description: [
-      'E-commerce platform with secure payment processing and inventory management.',
-      'Scalable architecture ready for high traffic.'
+      'Peer-to-peer meeting platform with secure communication channels and real-time video.'
     ],
-    techStack: ['React', 'Stripe', 'PostgreSQL']
+    techStack: ['WebRTC', 'Smart Servers']
   },
   {
     type: 'image',
     src: '/assets/recent_work/11.webp',
-    title: 'Project Eleven',
+    title: 'Gesture to Speech',
     description: [
-      'Social media application with real-time messaging and notifications.'
+      'A gesture recognition application that converts hand gestures into spoken language.'
     ],
-    techStack: ['Socket.io', 'React']
+    techStack: ['ML', 'Text-to-Speech']
   }
 ];
