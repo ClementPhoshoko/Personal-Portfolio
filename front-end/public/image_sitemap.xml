@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://clementphoshoko.vercel.app/</loc>
     <image:image>
@@ -22,6 +23,18 @@
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/4.webp</image:loc>
       <image:title>Project Four</image:title>
     </image:image>
+    <video:video>
+      <video:content_loc>https://clementphoshoko.vercel.app/assets/recent_work/6.mp4</video:content_loc>
+      <video:title>Project Six</video:title>
+      <video:description>Project Six showcase</video:description>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:content_loc>https://clementphoshoko.vercel.app/assets/recent_work/7.mp4</video:content_loc>
+      <video:title>Project Seven</video:title>
+      <video:description>Project Seven showcase</video:description>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
     <image:image>
       <image:loc>https://clementphoshoko.vercel.app/assets/recent_work/8.webp</image:loc>
       <image:title>Project Eight</image:title>
