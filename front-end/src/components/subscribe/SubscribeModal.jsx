@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import './SubscribeModal.css';
 
 const SubscribeModal = () => {
@@ -54,11 +57,13 @@ const SubscribeModal = () => {
           
           <div className="button-group">
             <button onClick={handleFollowGitHub} className="subscribe-button">
-              Follow on GitHub
+              <FontAwesomeIcon icon={faGithub} />
+              <span>Follow</span>
             </button>
             
             <button onClick={handleMaybeLater} className="maybe-later-button">
-              Maybe later
+              <FontAwesomeIcon icon={faClock} />
+              <span>Later</span>
             </button>
           </div>
         </div>
