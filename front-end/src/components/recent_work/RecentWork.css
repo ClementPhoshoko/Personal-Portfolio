@@ -9,12 +9,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
   overflow-x: hidden;
 }
 
 .recent-work-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
   font-weight: 700;
   color: #ffffff;
   text-align: center;
@@ -170,7 +169,7 @@
 }
 
 .project-title {
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
   font-weight: 700;
   color: #ffffff;
   margin: 0;
@@ -297,9 +296,6 @@
   .recent-work-section {
     padding: 3rem 4rem 1.5rem 4rem;
   }
-  .recent-work-title {
-    font-size: 3rem;
-  }
   .project-carousel-container {
     height: 700px;
   }
@@ -356,9 +352,6 @@
 @media (max-width: 480px) {
   .recent-work-section {
     padding: 1.25rem 0.5rem 0.5rem 0.5rem;
-  }
-  .recent-work-title {
-    font-size: 1.4rem;
   }
   .project-carousel-container {
     height: 350px;
