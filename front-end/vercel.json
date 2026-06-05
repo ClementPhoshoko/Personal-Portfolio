@@ -1,8 +1,8 @@
 {
   "rewrites": [
-    { 
-      "source": "/((?!sitemap\\.xml|main_sitemap\\.xml|image_sitemap\\.xml|robots\\.txt|api|_next|static|assets|.*\\..*).*)", 
-      "destination": "/index.html" 
+    {
+      "source": "/((?!main_sitemap\\.xml|image_sitemap\\.xml|robots\\.txt|api|_next|static|assets/|.*\\.(js|css|svg|png|jpg|jpeg|gif|webp|ico|mp4|txt|xml)).*)",
+      "destination": "/index.html"
     }
   ]
 }
