@@ -1358,51 +1358,84 @@
   gap: 1rem;
 }
 
-.achievement-carousel-set[aria-hidden="true"] {
-  pointer-events: auto;
-}
-
 .achievement-carousel-set .achievement-card,
 .achievement-carousel-set .achievement-card:nth-child(n) {
-  flex: 0 0 clamp(290px, 29vw, 360px);
+  flex: 0 0 clamp(235px, 22vw, 280px);
   width: auto;
-  height: 360px;
+  height: 270px;
   min-height: 0;
   margin: 0;
   grid-column: auto;
   grid-row: auto;
 }
 
-.achievement-carousel-set .achievement-card-featured {
-  flex-basis: min(66vw, 760px);
-  height: 430px;
+.achievement-carousel-set .achievement-card .achievement-image-container {
+  height: 112px;
+  border-radius: 20px 20px 0 0;
 }
 
-.achievement-carousel-set .achievement-card-size-tall {
-  height: 410px;
+.achievement-carousel-set .achievement-card .achievement-content {
+  padding: 0.85rem 1rem;
 }
 
-.achievement-carousel-set .achievement-card-size-wide {
-  flex-basis: min(48vw, 560px);
-  height: 380px;
+.achievement-carousel-set .achievement-card .achievement-title {
+  display: -webkit-box;
+  overflow: hidden;
+  min-height: 2.2em;
+  max-width: 22ch;
+  margin-bottom: 0.35rem;
+  font-size: 1.08rem;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
-.achievement-carousel-set .achievement-card-size-compact {
-  flex-basis: clamp(280px, 25vw, 330px);
-  height: 330px;
+.achievement-carousel-set .achievement-card .achievement-description {
+  min-height: 2.6em;
+  max-width: 100%;
+  margin-bottom: 0.55rem;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
+
+.achievement-carousel-set .achievement-card .achievement-meta {
+  min-height: 1.7rem;
+}
+
+.achievement-carousel-set .achievement-card .achievement-category {
+  font-size: 0.68rem;
 }
 
 @media (max-width: 1026px) {
   .achievement-carousel-set .achievement-card {
-    flex-basis: 320px;
+    flex-basis: 250px;
+    height: 250px;
   }
 
-  .achievement-carousel-set .achievement-card-featured {
-    flex-basis: min(72vw, 620px);
+  .achievement-carousel-set .achievement-card .achievement-image-container {
+    height: 100px;
   }
 
-  .achievement-carousel-set .achievement-card-size-wide {
-    flex-basis: min(56vw, 460px);
+  .achievement-carousel-set .achievement-card .achievement-title {
+    font-size: 1.12rem;
+  }
+
+  .achievement-carousel-set .achievement-card .achievement-description {
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
+  .achievement-carousel-set .achievement-card .achievement-content {
+    padding: 1rem;
+  }
+
+  .achievement-carousel-set .achievement-card .tech-tag {
+    padding: 0.22rem 0.48rem;
+    font-size: 0.62rem;
   }
 }
 
@@ -1417,22 +1450,68 @@
   }
 
   .achievement-carousel-set .achievement-card {
-    flex-basis: 84vw;
-    height: 370px;
+    flex-basis: clamp(205px, 72vw, 235px);
+    height: 235px;
   }
 
-  .achievement-carousel-set .achievement-card-featured {
-    flex-basis: 90vw;
-    height: 410px;
+  .achievement-carousel-set .achievement-card .achievement-image-container {
+    height: 88px;
   }
 
-  .achievement-carousel-set .achievement-card-size-wide {
-    flex-basis: 87vw;
+  .achievement-carousel-set .achievement-card .achievement-title {
+    min-height: 2.25em;
+    font-size: 1.08rem;
   }
 
-  .achievement-carousel-set .achievement-card-size-compact {
-    flex-basis: 80vw;
-    height: 340px;
+  .achievement-carousel-set .achievement-card .achievement-description {
+    min-height: 2.5em;
+    margin-bottom: 0.45rem;
+    font-size: 0.72rem;
+    line-height: 1.25;
+  }
+
+  .achievement-carousel-set .achievement-card .achievement-content {
+    padding: 0.72rem 0.8rem;
+  }
+
+  .achievement-carousel-set .achievement-card .achievement-meta {
+    gap: 0.3rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .achievement-carousel-set .achievement-card .achievement-category {
+    font-size: 0.6rem;
+  }
+
+  .achievement-carousel-set .achievement-card .achievement-year,
+  .achievement-carousel-set .achievement-card .achievement-featured-label {
+    padding: 0.18rem 0.42rem;
+    font-size: 0.6rem;
+  }
+
+  .achievement-carousel-set .achievement-card .tech-tag {
+    padding: 0.18rem 0.42rem;
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .achievement-carousel-set .achievement-card {
+    flex-basis: min(72vw, 215px);
+    height: 220px;
+  }
+
+  .achievement-carousel-set .achievement-card .achievement-image-container {
+    height: 78px;
+  }
+
+  .achievement-carousel-set .achievement-card .achievement-title {
+    font-size: 1rem;
+  }
+
+  .achievement-carousel-set .achievement-card .achievement-description {
+    min-height: 3.6em;
+    font-size: 0.72rem;
   }
 }
 

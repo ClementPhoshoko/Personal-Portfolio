@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import './Achievements.css';
 // import CustomIframe from '../../../components/custom_iframe/CustomIframe';
 
@@ -11,7 +11,6 @@ const achievements = [
     description: "Built a network analytics dashboard measuring speed, latency, and jitter for 50+ users, with ISP insights, security recommendations, port risk analysis, and anomaly detection.",
     technologies: ["React", "Node.js", "Express", "Network Analytics"],
     image: "/assets/images/speedtest_akovolabs.png",
-    cardSize: "tall",
     year: "2026",
     featured: true,
     link: "https://speedtest.akovolabs.co.za"
@@ -24,7 +23,6 @@ const achievements = [
     description: "Built a public video-captioning platform that has processed more than 100 videos. Integrated Gemini transcription, FFmpeg processing, and an asynchronous worker with Supabase storage and job retries.",
     technologies: ["React", "Vite", "Node.js", "Gemini", "FFmpeg", "Supabase"],
     image: "/assets/images/burner_akovolabs.png",
-    cardSize: "wide",
     year: "2026",
     link: "https://burner.akovolabs.co.za"
   },
@@ -36,7 +34,6 @@ const achievements = [
     description: "Built a real-time hand-sign recognition tool that turns webcam gestures into readable sentences, using a React frontend, Node.js/Express gateway, and Python FastAPI vision service with MediaPipe.",
     technologies: ["React", "Node.js", "FastAPI", "Python", "MediaPipe"],
     image: "/assets/images/hand_sign_recognition_system.png",
-    cardSize: "wide",
     year: "2026",
     link: "https://github.com/ClementPhoshoko/Hand-Sign-Recognition-Web-System"
   },
@@ -48,7 +45,6 @@ const achievements = [
     description: "Built a Manifest V3 extension with React and Vite that captures full-page scrolling screenshots, stitches viewports with the Canvas API, detects repeated floating navigation, and exports PNG, JPEG, or WebP images.",
     technologies: ["Chrome Extension", "Manifest V3", "React", "Vite", "Canvas API"],
     image: "/assets/images/akovolabs_snap.png",
-    cardSize: "compact",
     year: "2026",
     link: "https://snap.akovolabs.co.za"
   },
@@ -60,7 +56,6 @@ const achievements = [
     description: "Built an AI-driven recruitment system that parses resumes into structured candidate data. The React and Node.js application supports CRUD workflows for jobs and candidates, is containerized with Docker, deployed through CI/CD, and used by RedMPS for external recruitment.",
     technologies: ["React", "Node.js", "AI/NLP", "Docker", "CI/CD"],
     image: "/assets/images/project-covers/ats.svg",
-    cardSize: "wide",
     year: "2025",
     link: "https://onboared.com"
   },
@@ -72,7 +67,6 @@ const achievements = [
     description: "Built and deployed a full-stack e-commerce with responsive UX, image hosting integration, and APIs.",
     technologies: ["React", "Node", "Git", "Supabase"],
     image: "/assets/images/homepage_cover.png",
-    cardSize: "wide",
     year: "2026",
     link: "https://clementine-store.vercel.app/"
   },
@@ -356,55 +350,21 @@ const Achievements = () => {
   const milestoneViewportRef = useRef(null);
   const milestoneTrackRef = useRef(null);
   const dragStateRef = useRef(null);
-  const pendingPreviewRef = useRef(null);
+  const suppressClickUntilRef = useRef(0);
   const [showLeftEdge, setShowLeftEdge] = useState(false);
   const [showRightEdge, setShowRightEdge] = useState(false);
   const [showAllCerts, setShowAllCerts] = useState(false);
   const [loadedAchievementImages, setLoadedAchievementImages] = useState({});
   const [expandedAchievement, setExpandedAchievement] = useState(null);
-  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
-  const [isCarouselInteracting, setIsCarouselInteracting] = useState(false);
   const expandedTriggerRef = useRef(null);
   const projectFilters = ['All', 'Web Apps', 'AI & Data', 'Tools'];
   const filteredAchievements = activeProjectFilter === 'All'
     ? achievements
     : achievements.filter((achievement) => achievement.filterGroup === activeProjectFilter);
-  const shouldPauseCarousel = isCarouselPaused || isCarouselInteracting || Boolean(expandedAchievement);
-  const getMilestoneCycleWidth = useCallback(() => {
-    const track = milestoneTrackRef.current;
-    const firstSet = track?.firstElementChild;
-    if (!track || !firstSet) return 0;
-    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 0;
-    return firstSet.getBoundingClientRect().width + gap;
-  }, []);
-
-  useEffect(() => {
-    const viewport = milestoneViewportRef.current;
-
-    if (!viewport || !milestoneTrackRef.current || shouldPauseCarousel) return undefined;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
-
-    const cycleWidth = getMilestoneCycleWidth();
-    if (cycleWidth <= viewport.clientWidth) return undefined;
-
-    let frameId;
-    let previousTime = 0;
-    const move = (time) => {
-      if (previousTime) viewport.scrollLeft += (time - previousTime) * 0.022;
-      if (viewport.scrollLeft >= cycleWidth) viewport.scrollLeft -= cycleWidth;
-      previousTime = time;
-      frameId = requestAnimationFrame(move);
-    };
-
-    frameId = requestAnimationFrame(move);
-    return () => cancelAnimationFrame(frameId);
-  }, [activeProjectFilter, getMilestoneCycleWidth, shouldPauseCarousel]);
-
   useLayoutEffect(() => {
     if (milestoneViewportRef.current) milestoneViewportRef.current.scrollLeft = 0;
   }, [activeProjectFilter]);
 
-  useEffect(() => () => window.clearTimeout(pendingPreviewRef.current), []);
   // const [isIframeOpen, setIsIframeOpen] = useState(false);
   // const [iframeUrl, setIframeUrl] = useState('');
   // const [iframeTitle, setIframeTitle] = useState('');
@@ -526,79 +486,35 @@ const Achievements = () => {
     }));
   };
 
-  const openInNewBlackPage = (url) => {
-    if (!url) return;
-
-    const newTab = window.open('', '_blank');
-
-    if (newTab) {
-      newTab.document.write(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>Opening...</title>
-            <style>
-              html, body {
-                margin: 0;
-                width: 100%;
-                height: 100%;
-                background: #000;
-              }
-            </style>
-          </head>
-          <body></body>
-        </html>
-      `);
-      newTab.document.close();
-      newTab.location.href = url;
-      return;
-    }
-
-    window.open(url, '_blank');
-  };
-
   const scrollMilestones = (direction) => {
     const viewport = milestoneViewportRef.current;
     if (!viewport) return;
 
-    setIsCarouselPaused(true);
     const distance = viewport.clientWidth * 0.78;
-    const cycleWidth = getMilestoneCycleWidth();
-    let target = viewport.scrollLeft + direction * distance;
-
-    if (cycleWidth > viewport.clientWidth) {
-      if (target < 0) target += cycleWidth;
-      if (target >= cycleWidth) target -= cycleWidth;
-    }
-
     viewport.scrollTo({
-      left: target,
+      left: viewport.scrollLeft + direction * distance,
       behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
     });
   };
 
-  const renderAchievementCard = (achievement, isClone = false) => (
+  const openAchievementPreview = (achievement, card) => {
+    expandedTriggerRef.current = milestoneTrackRef.current?.querySelector(
+      `.achievement-carousel-set [data-achievement-id="${achievement.id}"] .achievement-title`
+    );
+    setExpandedAchievement({
+      item: achievement,
+      sourceRect: card.getBoundingClientRect()
+    });
+  };
+
+  const renderAchievementCard = (achievement) => (
     <div
-      key={`${isClone ? 'clone-' : ''}${achievement.id}`}
+      key={achievement.id}
       data-achievement-id={achievement.id}
-      className={`achievement-card ${achievement.featured ? 'achievement-card-featured' : ''} ${achievement.cardSize ? `achievement-card-size-${achievement.cardSize}` : ''} ${loadedAchievementImages[achievement.id] ? 'is-loaded' : 'is-loading'} ${expandedAchievement?.id === achievement.id ? 'achievement-card-undocked' : ''}`}
-      onPointerEnter={(event) => {
-        if ((event.pointerType === 'mouse' || event.pointerType === 'pen') && !dragStateRef.current?.moved) {
-          const card = event.currentTarget;
-          pendingPreviewRef.current = window.setTimeout(() => {
-            expandedTriggerRef.current = milestoneTrackRef.current?.querySelector(
-              `.achievement-carousel-set:not([aria-hidden="true"]) [data-achievement-id="${achievement.id}"] .achievement-title`
-            );
-            setExpandedAchievement({
-              item: achievement,
-              sourceRect: card.getBoundingClientRect()
-            });
-          }, 180);
-        }
-      }}
-      onPointerLeave={() => {
-        window.clearTimeout(pendingPreviewRef.current);
-        pendingPreviewRef.current = null;
+      className={`achievement-card ${achievement.featured ? 'achievement-card-featured' : ''} ${loadedAchievementImages[achievement.id] ? 'is-loaded' : 'is-loading'} ${expandedAchievement?.id === achievement.id ? 'achievement-card-undocked' : ''}`}
+      onClick={(event) => {
+        if (Date.now() < suppressClickUntilRef.current || event.target.closest('a, button')) return;
+        openAchievementPreview(achievement, event.currentTarget);
       }}
     >
       <div className="achievement-image-container">
@@ -627,7 +543,6 @@ const Achievements = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Open ${achievement.title}`}
-            tabIndex={isClone ? -1 : undefined}
           >
             <svg
               className="github-icon"
@@ -651,9 +566,10 @@ const Achievements = () => {
             <button
               type="button"
               className={`achievement-title ${achievement.link ? 'achievement-title-link' : ''}`}
-              onClick={() => openInNewBlackPage(achievement.link)}
-              disabled={!achievement.link}
-              tabIndex={isClone ? -1 : undefined}
+              onClick={(event) => {
+                event.stopPropagation();
+                openAchievementPreview(achievement, event.currentTarget.closest('.achievement-card'));
+              }}
             >
               {achievement.title}
             </button>
@@ -664,9 +580,12 @@ const Achievements = () => {
             </div>
             <p className="achievement-description">{achievement.description}</p>
             <div className="achievement-technologies">
-              {achievement.technologies.map((technology) => (
+              {achievement.technologies.slice(0, 2).map((technology) => (
                 <span key={technology} className="tech-tag">{technology}</span>
               ))}
+              {achievement.technologies.length > 2 && (
+                <span className="tech-tag tech-tag-more">+{achievement.technologies.length - 2}</span>
+              )}
             </div>
           </>
         ) : (
@@ -708,21 +627,10 @@ const Achievements = () => {
         ))}
       </div>
 
-      <div
-        className={`achievement-carousel ${shouldPauseCarousel ? 'is-paused' : ''}`}
-      >
+      <div className="achievement-carousel">
         <div className="achievement-carousel-controls" role="group" aria-label="Milestone carousel controls">
           <button type="button" onClick={() => scrollMilestones(-1)} aria-label="Scroll to previous milestones">
             Previous
-          </button>
-          <button
-            type="button"
-            className="achievement-carousel-toggle"
-            aria-pressed={isCarouselPaused}
-            aria-label={isCarouselPaused ? 'Resume automatic scrolling' : 'Pause automatic scrolling'}
-            onClick={() => setIsCarouselPaused((paused) => !paused)}
-          >
-            {isCarouselPaused ? 'Play' : 'Pause'}
           </button>
           <button type="button" onClick={() => scrollMilestones(1)} aria-label="Scroll to next milestones">
             Next
@@ -737,12 +645,6 @@ const Achievements = () => {
           aria-hidden={expandedAchievement ? 'true' : undefined}
           inert={Boolean(expandedAchievement)}
           tabIndex={0}
-          onPointerEnter={() => setIsCarouselInteracting(true)}
-          onPointerLeave={() => setIsCarouselInteracting(false)}
-          onFocusCapture={() => setIsCarouselInteracting(true)}
-          onBlurCapture={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget)) setIsCarouselInteracting(false);
-          }}
           onKeyDown={(event) => {
             if (event.target !== event.currentTarget) return;
             if (event.key === 'ArrowRight') {
@@ -754,8 +656,6 @@ const Achievements = () => {
             }
           }}
           onPointerDown={(event) => {
-            window.clearTimeout(pendingPreviewRef.current);
-            pendingPreviewRef.current = null;
             if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('button, a')) return;
             dragStateRef.current = {
               pointerId: event.pointerId,
@@ -770,7 +670,7 @@ const Achievements = () => {
             const distance = event.clientX - drag.startX;
             if (Math.abs(distance) > 5) {
               drag.moved = true;
-              setIsCarouselPaused(true);
+              suppressClickUntilRef.current = Date.now() + 350;
               event.currentTarget.setPointerCapture(event.pointerId);
             }
             if (drag.moved) {
@@ -784,9 +684,6 @@ const Achievements = () => {
           <div className="achievement-carousel-track" ref={milestoneTrackRef}>
             <div className="achievement-carousel-set">
               {filteredAchievements.map((achievement) => renderAchievementCard(achievement))}
-            </div>
-            <div className="achievement-carousel-set" aria-hidden="true">
-              {filteredAchievements.map((achievement) => renderAchievementCard(achievement, true))}
             </div>
           </div>
         </div>
