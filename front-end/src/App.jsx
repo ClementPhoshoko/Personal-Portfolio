@@ -60,7 +60,7 @@ function AppContent() {
       "/": `Home | ${baseTitle}`,
       "/journey": `Journey | ${baseTitle}`,
       "/resume": `Resume | ${baseTitle}`,
-      "/achievements": `Achievements | ${baseTitle}`,
+      "/achievements": `Developer Milestones | ${baseTitle}`,
       "/blog": `Blog | ${baseTitle}`,
       "/tutorials": `Tutorials | ${baseTitle}`,
       "/contact": `Contact | ${baseTitle}`,

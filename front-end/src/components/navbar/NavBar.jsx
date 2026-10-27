@@ -146,7 +146,7 @@ const Navbar = () => {
 
             <div className="mobile-menu-item item-3" onClick={(e) => handleMenuItemClick('/achievements', e)}>
               <FontAwesomeIcon icon={faTrophy} className="mobile-icon" />
-              <span className="mobile-label">Achievements</span>
+              <span className="mobile-label">Developer Milestones</span>
             </div>
 
             <div className="mobile-menu-item item-4" onClick={(e) => handleMenuItemClick('/resume', e)}>
@@ -229,8 +229,8 @@ const Navbar = () => {
                 <FontAwesomeIcon icon={faTrophy} className="icon-achievements" /> {/* Icon for Achievements */}
               </div>
               <div className="mega-menu-text">
-                <h4>Achievements</h4>
-                <p>Explore my notable accomplishments, certifications, project successes, and recognition received throughout my professional journey in software development and technology innovation.</p>
+                <h4>Developer Milestones</h4>
+                <p>Explore selected projects, certifications, and key accomplishments from my software development journey.</p>
               </div>
             </div>
             <div className="mega-menu-item" onClick={() => navigateAndCloseMegaMenus('/resume')} style={{ cursor: 'pointer' }}>

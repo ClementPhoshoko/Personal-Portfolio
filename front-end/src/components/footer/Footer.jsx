@@ -91,7 +91,7 @@ const Footer = () => {
               <li><span className="footer-link" onClick={() => handleNavigation('/journey')}>About Me</span></li>
               <li><span className="footer-link" onClick={() => handleNavigation('/contact')}>Contact Me</span></li>
               <li><span className="footer-link" onClick={() => handleNavigation('/resume')}>My Resume</span></li>
-              <li><span className="footer-link" onClick={() => handleNavigation('/achievements')}>My Projects</span></li>
+              <li><span className="footer-link" onClick={() => handleNavigation('/achievements')}>Developer Milestones</span></li>
             </ul>
           </div>
 
