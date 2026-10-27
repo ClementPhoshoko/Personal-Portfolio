@@ -933,6 +933,8 @@
   border-radius: 18px;
   background: #151a21;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+  transition: transform 480ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 320ms ease;
+  will-change: transform;
 }
 
 .achievement-card-featured {
@@ -955,8 +957,17 @@
 
 .achievement-card:hover,
 .achievement-card:focus-within {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.34);
+}
+
+.achievement-card-featured:hover,
+.achievement-card-featured:focus-within {
+  transform: translateY(-3px);
+}
+
+.achievement-card-undocked {
+  visibility: hidden;
 }
 
 .achievement-image-container {
@@ -1051,6 +1062,123 @@
   font-size: 0.95rem;
 }
 
+.achievement-maximize-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+  padding: 5vh 5vw;
+  background: rgba(5, 8, 12, 0.78);
+  backdrop-filter: blur(8px);
+  animation: maximizeBackdropIn 520ms ease both;
+}
+
+.achievement-maximize-layer.is-closing {
+  animation: maximizeBackdropOut 520ms ease both;
+}
+
+.achievement-maximize-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.achievement-maximize-card {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 90vw);
+  height: min(760px, 88vh);
+  min-height: min(520px, 88vh);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  background: #11161d;
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.6);
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.achievement-maximize-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.62) saturate(0.9);
+}
+
+.achievement-maximize-content {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background: linear-gradient(180deg, transparent 0%, rgba(8, 11, 15, 0.68) 25%, rgba(8, 11, 15, 0.97) 100%);
+}
+
+.achievement-maximize-content h2 {
+  max-width: 22ch;
+  margin: 0 0 0.8rem;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.achievement-maximize-content .achievement-description {
+  max-width: 68ch;
+  margin-bottom: 1.1rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+}
+
+.achievement-maximize-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.3rem;
+}
+
+.achievement-project-link,
+.achievement-close-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.achievement-close-button:hover,
+.achievement-project-link:hover {
+  color: #ffae6b;
+}
+
+.achievement-close-button:focus-visible,
+.achievement-project-link:focus-visible {
+  outline: 2px solid #ffae6b;
+  outline-offset: 3px;
+}
+
+@keyframes maximizeBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes maximizeBackdropOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
 .achievement-technologies {
   order: 3;
   gap: 0.4rem;
@@ -1105,6 +1233,35 @@
     min-height: 400px;
   }
 
+  .achievement-card-featured:hover,
+  .achievement-card-featured:focus-within {
+    transform: translateY(-3px);
+  }
+
+  .achievement-card:hover,
+  .achievement-card:focus-within {
+    transform: translateY(-3px);
+  }
+
+  .achievement-maximize-layer {
+    padding: 3vh 3vw;
+  }
+
+  .achievement-maximize-card {
+    width: 94vw;
+    height: 90vh;
+    min-height: 0;
+    border-radius: 18px;
+  }
+
+  .achievement-maximize-content {
+    padding: 1.35rem;
+  }
+
+  .achievement-maximize-content h2 {
+    font-size: clamp(1.7rem, 8vw, 2.5rem);
+  }
+
   .achievement-content {
     padding: 1.2rem;
   }
@@ -1117,7 +1274,8 @@
 @media (prefers-reduced-motion: reduce) {
   .achievement-card,
   .achievement-image,
-  .tech-tag {
+  .tech-tag,
+  .achievement-maximize-layer {
     animation: none !important;
     transition: none !important;
   }

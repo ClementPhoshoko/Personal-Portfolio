@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import './Achievements.css';
 // import CustomIframe from '../../../components/custom_iframe/CustomIframe';
 
@@ -220,6 +220,125 @@ const certificates = [
   }
 ];
 
+const ExpandedAchievement = ({ achievement, imageSrc, sourceRect, onClose }) => {
+  const cardRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  onCloseRef.current = onClose;
+
+  useLayoutEffect(() => {
+    const card = cardRef.current;
+    if (!card) return undefined;
+
+    const targetRect = card.getBoundingClientRect();
+    const dx = sourceRect.left - targetRect.left;
+    const dy = sourceRect.top - targetRect.top;
+    const sx = sourceRect.width / targetRect.width;
+    const sy = sourceRect.height / targetRect.height;
+    const from = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
+    const animation = card.animate(
+      isClosing
+        ? [{ transform: 'translate(0, 0) scale(1, 1)' }, { transform: from }]
+        : [{ transform: from }, { transform: 'translate(0, 0) scale(1, 1)' }],
+      {
+        duration: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 520,
+        easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+        fill: 'both'
+      }
+    );
+
+    if (isClosing) {
+      animation.onfinish = () => onCloseRef.current();
+    } else {
+      animation.onfinish = () => {
+        animation.cancel();
+        setIsReady(true);
+        closeButtonRef.current?.focus({ preventScroll: true });
+      };
+    }
+
+    return () => animation.cancel();
+  }, [isClosing, sourceRect]);
+
+  useLayoutEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
+  const beginClose = () => {
+    if (!isClosing) setIsClosing(true);
+  };
+
+  return (
+    <div className={`achievement-maximize-layer ${isClosing ? 'is-closing' : ''}`}>
+      <button
+        type="button"
+        className="achievement-maximize-backdrop"
+        aria-label="Close expanded project"
+        onClick={beginClose}
+      />
+      <article
+        ref={cardRef}
+        className="achievement-maximize-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="expanded-achievement-title"
+        onClick={(event) => event.stopPropagation()}
+        onPointerLeave={() => {
+          if (isReady) beginClose();
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Escape') beginClose();
+          if (event.key === 'Tab') {
+            const focusable = event.currentTarget.querySelectorAll('a[href], button:not(:disabled)');
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last?.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first?.focus();
+            }
+          }
+        }}
+      >
+        <img className="achievement-maximize-image" src={imageSrc} alt="" />
+        <div className="achievement-maximize-content">
+          <div className="achievement-meta">
+            <p className="achievement-category">{achievement.category}</p>
+            <span className="achievement-year">{achievement.year}</span>
+            {achievement.featured && <span className="achievement-featured-label">Featured</span>}
+          </div>
+          <h2 id="expanded-achievement-title">{achievement.title}</h2>
+          <p className="achievement-description">{achievement.description}</p>
+          <div className="achievement-technologies">
+            {achievement.technologies.map((technology) => (
+              <span key={technology} className="tech-tag">{technology}</span>
+            ))}
+          </div>
+          <div className="achievement-maximize-actions">
+            {achievement.link && (
+              <a href={achievement.link} target="_blank" rel="noopener noreferrer" className="achievement-project-link">
+                View project
+              </a>
+            )}
+            <button ref={closeButtonRef} type="button" className="achievement-close-button" onClick={beginClose}>
+              Close
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  );
+};
+
 const Achievements = () => {
   const [activeProjectFilter, setActiveProjectFilter] = useState('All');
   const leetcodesRef = useRef(null);
@@ -227,6 +346,8 @@ const Achievements = () => {
   const [showRightEdge, setShowRightEdge] = useState(false);
   const [showAllCerts, setShowAllCerts] = useState(false);
   const [loadedAchievementImages, setLoadedAchievementImages] = useState({});
+  const [expandedAchievement, setExpandedAchievement] = useState(null);
+  const expandedTriggerRef = useRef(null);
   const projectFilters = ['All', 'Web Apps', 'AI & Data', 'Tools'];
   const filteredAchievements = activeProjectFilter === 'All'
     ? achievements
@@ -405,11 +526,20 @@ const Achievements = () => {
         ))}
       </div>
 
-      <div className="achievements-grid">
+      <div className="achievements-grid" aria-hidden={expandedAchievement ? 'true' : undefined} inert={Boolean(expandedAchievement)}>
         {filteredAchievements.map((achievement) => (
           <div
             key={achievement.id}
-            className={`achievement-card ${achievement.featured ? 'achievement-card-featured' : ''} ${loadedAchievementImages[achievement.id] ? 'is-loaded' : 'is-loading'}`}
+            className={`achievement-card ${achievement.featured ? 'achievement-card-featured' : ''} ${loadedAchievementImages[achievement.id] ? 'is-loaded' : 'is-loading'} ${expandedAchievement?.id === achievement.id ? 'achievement-card-undocked' : ''}`}
+            onPointerEnter={(event) => {
+              if (event.pointerType === 'mouse' || event.pointerType === 'pen') {
+                expandedTriggerRef.current = event.currentTarget.querySelector('.achievement-title');
+                setExpandedAchievement({
+                  item: achievement,
+                  sourceRect: event.currentTarget.getBoundingClientRect()
+                });
+              }
+            }}
           >
             <div className="achievement-image-container">
               {!loadedAchievementImages[achievement.id] && (
@@ -495,6 +625,18 @@ const Achievements = () => {
           </div>
         ))}
       </div>
+
+      {expandedAchievement && (
+        <ExpandedAchievement
+          achievement={expandedAchievement.item}
+          imageSrc={getOptimizedImageSrc(expandedAchievement.item.image)}
+          sourceRect={expandedAchievement.sourceRect}
+          onClose={() => {
+            setExpandedAchievement(null);
+            requestAnimationFrame(() => expandedTriggerRef.current?.focus({ preventScroll: true }));
+          }}
+        />
+      )}
 
       {/* Certificates Section */}
       <div className="section-header">
