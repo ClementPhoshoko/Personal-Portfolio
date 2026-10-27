@@ -4,32 +4,25 @@ import './Achievements.css';
 
 const achievements = [
   {
-    id: 8,
-    title: "AI-Powered ATS",
-    category: "Applicant Tracking System for RedMPS",
-    description: "Built an AI-driven recruitment system that parses resumes into structured candidate data. The React and Node.js application supports CRUD workflows for jobs and candidates, is containerized with Docker, deployed through CI/CD, and used by RedMPS for external recruitment.",
-    technologies: ["React", "Node.js", "AI/NLP", "Docker", "CI/CD"],
-    image: "/assets/images/homepage_cover.png",
-    year: "2025",
-    link: "https://onboared.com"
-  },
-  {
     id: 9,
     title: "AkovoLabs Speedtest",
     category: "Network Analytics",
+    filterGroup: "AI & Data",
     description: "Built a network analytics dashboard measuring speed, latency, and jitter for 50+ users, with ISP insights, security recommendations, port risk analysis, and anomaly detection.",
     technologies: ["React", "Node.js", "Express", "Network Analytics"],
-    image: "/assets/images/langs_screenshot.png",
+    image: "/assets/images/project-covers/network.svg",
     year: "2026",
+    featured: true,
     link: "https://speedtest.akovolabs.co.za"
   },
   {
     id: 10,
     title: "AkovoLabs Burner",
     category: "AI Subtitle Burner",
+    filterGroup: "AI & Data",
     description: "Built a public video-captioning platform that has processed more than 100 videos. Integrated Gemini transcription, FFmpeg processing, and an asynchronous worker with Supabase storage and job retries.",
     technologies: ["React", "Vite", "Node.js", "Gemini", "FFmpeg", "Supabase"],
-    image: "/assets/images/reactJscode.png",
+    image: "/assets/images/project-covers/burner.svg",
     year: "2026",
     link: "https://burner.akovolabs.co.za"
   },
@@ -37,9 +30,10 @@ const achievements = [
     id: 11,
     title: "Hand Sign Recognition Meeting Assistant",
     category: "Accessibility & Computer Vision",
+    filterGroup: "AI & Data",
     description: "Built a real-time hand-sign recognition tool that turns webcam gestures into readable sentences, using a React frontend, Node.js/Express gateway, and Python FastAPI vision service with MediaPipe.",
     technologies: ["React", "Node.js", "FastAPI", "Python", "MediaPipe"],
-    image: "/assets/images/blogs_screenshot.png",
+    image: "/assets/images/project-covers/meeting.svg",
     year: "2026",
     link: "https://github.com/ClementPhoshoko/Hand-Sign-Recognition-Web-System"
   },
@@ -47,16 +41,29 @@ const achievements = [
     id: 12,
     title: "AkovoLabs Snap",
     category: "Chrome Extension",
+    filterGroup: "Tools",
     description: "Built a Manifest V3 extension with React and Vite that captures full-page scrolling screenshots, stitches viewports with the Canvas API, detects repeated floating navigation, and exports PNG, JPEG, or WebP images.",
     technologies: ["Chrome Extension", "Manifest V3", "React", "Vite", "Canvas API"],
-    image: "/assets/images/folder_screenshot.png",
+    image: "/assets/images/project-covers/snap.svg",
     year: "2026",
     link: "https://snap.akovolabs.co.za"
+  },
+  {
+    id: 8,
+    title: "AI-Powered ATS",
+    category: "Applicant Tracking System for RedMPS",
+    filterGroup: "Web Apps",
+    description: "Built an AI-driven recruitment system that parses resumes into structured candidate data. The React and Node.js application supports CRUD workflows for jobs and candidates, is containerized with Docker, deployed through CI/CD, and used by RedMPS for external recruitment.",
+    technologies: ["React", "Node.js", "AI/NLP", "Docker", "CI/CD"],
+    image: "/assets/images/project-covers/ats.svg",
+    year: "2025",
+    link: "https://onboared.com"
   },
   {
     id: 1,
     title: "Clementine Store e-commerce",
     category: "E-commerce Freelancing",
+    filterGroup: "Web Apps",
     description: "Built and deployed a full-stack e-commerce with responsive UX, image hosting integration, and APIs.",
     technologies: ["React", "Node", "Git", "Supabase"],
     image: "/assets/images/homepage_cover.png",
@@ -67,6 +74,7 @@ const achievements = [
     id: 2,
     title: "Robot with One-Eye",
     category: "Personal Project",
+    filterGroup: "Tools",
     description: "Captures webcam video, detects motion in real-time, and identifies direction using OpenCV and Java Swing.",
     technologies: ["OpenCV", "Java", "Java Swing"],
     image: "/assets/images/robot_with_one_eye.png",
@@ -77,6 +85,7 @@ const achievements = [
     id: 3,
     title: "Linear Codes and G-Modules",
     category: "Academic Project", 
+    filterGroup: "AI & Data",
     description: "G-modules enhance linear codes for error correction through algebraic optimization of encoding/decoding.",
     technologies: ["Groups", "Gap", "Linear Algebra", "Matlab"],
     image: "/assets/images/research_screenshot.png",
@@ -87,6 +96,7 @@ const achievements = [
     id: 4,
     title: "Portfolio Website",
     category: "IT Project",
+    filterGroup: "Web Apps",
     description: "A responsive portfolio website using React.js, Node.js, and Express.js with modern UI/UX design.",
     technologies: ["React.js", "Node.js", "Express.js", "CSS3"],
     image: "/assets/images/langs_screenshot.png",
@@ -97,6 +107,7 @@ const achievements = [
     id: 5,
     title: "Dragon44x Indicator",
     category: "Market Analysis",
+    filterGroup: "Tools",
     description: "Inverse Head and Shoulders, Descending Triangle, Bull Flag, and etc. indicators in MT4.",
     technologies: ["MQL", "MQL4", "Statistics"],
     image: "/assets/images/market.png",
@@ -106,6 +117,7 @@ const achievements = [
     id: 6,
     title: "C++ Projects[Batch]",
     category: "Learning",
+    filterGroup: "Tools",
     description: "Exploring C++ from IO streams, functions, classes, and etc.",
     technologies: ["C++", "IO streams", "Functions", "Classes"],
     image: "/assets/images/cpp_screenshot.png",
@@ -116,6 +128,7 @@ const achievements = [
     id: 7,
     title: "Java Projects[Batch]",
     category: "Learning",
+    filterGroup: "Tools",
     description: "Exploring Java from Data Structures to Threads. Also covers different topics in OOP.",
     technologies: ["Java", "Data Structures", "OOP", "Threads"],
     image: "/assets/images/java_screenshot.png",
@@ -208,11 +221,16 @@ const certificates = [
 ];
 
 const Achievements = () => {
+  const [activeProjectFilter, setActiveProjectFilter] = useState('All');
   const leetcodesRef = useRef(null);
   const [showLeftEdge, setShowLeftEdge] = useState(false);
   const [showRightEdge, setShowRightEdge] = useState(false);
   const [showAllCerts, setShowAllCerts] = useState(false);
   const [loadedAchievementImages, setLoadedAchievementImages] = useState({});
+  const projectFilters = ['All', 'Web Apps', 'AI & Data', 'Tools'];
+  const filteredAchievements = activeProjectFilter === 'All'
+    ? achievements
+    : achievements.filter((achievement) => achievement.filterGroup === activeProjectFilter);
   // const [isIframeOpen, setIsIframeOpen] = useState(false);
   // const [iframeUrl, setIframeUrl] = useState('');
   // const [iframeTitle, setIframeTitle] = useState('');
@@ -373,11 +391,25 @@ const Achievements = () => {
         <div className="section-underline"></div>
       </div>
       
+      <div className="project-filter-bar" role="group" aria-label="Filter developer milestones">
+        {projectFilters.map((filter) => (
+          <button
+            key={filter}
+            type="button"
+            className={`project-filter-button ${activeProjectFilter === filter ? 'active' : ''}`}
+            aria-pressed={activeProjectFilter === filter}
+            onClick={() => setActiveProjectFilter(filter)}
+          >
+            {filter}
+          </button>
+        ))}
+      </div>
+
       <div className="achievements-grid">
-        {achievements.map((achievement) => (
+        {filteredAchievements.map((achievement) => (
           <div
             key={achievement.id}
-            className={`achievement-card ${loadedAchievementImages[achievement.id] ? 'is-loaded' : 'is-loading'}`}
+            className={`achievement-card ${achievement.featured ? 'achievement-card-featured' : ''} ${loadedAchievementImages[achievement.id] ? 'is-loaded' : 'is-loading'}`}
           >
             <div className="achievement-image-container">
               {!loadedAchievementImages[achievement.id] && (
@@ -399,20 +431,26 @@ const Achievements = () => {
               />
 
               {loadedAchievementImages[achievement.id] && achievement.link && (
-                <div 
+                <a
                   className="github-icon-overlay"
-                  onClick={() => window.open(achievement.link, '_blank')}
-                  style={{ cursor: 'pointer' }}
+                  href={achievement.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${achievement.title}`}
                 >
                   <svg 
                     className="github-icon" 
                     viewBox="0 0 24 24" 
-                    fill="currentColor"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    <path d="M13 5h6v6M19 5l-9 9"/><path d="M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>
                   </svg>
-                </div>
+                </a>
               )}
             </div>
             
@@ -427,7 +465,11 @@ const Achievements = () => {
                   >
                     {achievement.title}
                   </button>
-                  <p className="achievement-category">{achievement.category}</p>
+                  <div className="achievement-meta">
+                    <p className="achievement-category">{achievement.category}</p>
+                    <span className="achievement-year">{achievement.year}</span>
+                    {achievement.featured && <span className="achievement-featured-label">Featured</span>}
+                  </div>
                   <p className="achievement-description">{achievement.description}</p>
 
                   <div className="achievement-technologies">
