@@ -1136,10 +1136,14 @@
 }
 
 .achievement-maximize-actions {
+  position: absolute;
+  top: clamp(1.25rem, 3vw, 2rem);
+  right: clamp(1.25rem, 3vw, 2rem);
+  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: 1.3rem;
+  gap: 1.15rem;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
 }
 
 .achievement-project-link,
@@ -1147,12 +1151,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.35rem 0;
+  padding: 0.55rem 0.15rem;
   border: 0;
   background: transparent;
   color: #fff;
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 1.08rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -1262,6 +1266,11 @@
     font-size: clamp(1.7rem, 8vw, 2.5rem);
   }
 
+  .achievement-maximize-actions {
+    top: 1.1rem;
+    right: 1.2rem;
+  }
+
   .achievement-content {
     padding: 1.2rem;
   }
@@ -1278,5 +1287,157 @@
   .achievement-maximize-layer {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+/* Horizontal milestone showcase with responsive card widths. */
+.achievement-carousel {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.achievement-carousel-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.85rem;
+}
+
+.achievement-carousel-controls button {
+  min-height: 38px;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.78);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.achievement-carousel-controls button:hover,
+.achievement-carousel-controls button:focus-visible {
+  border-color: rgba(255, 174, 107, 0.62);
+  background: rgba(255, 125, 66, 0.13);
+  color: #fff;
+}
+
+.achievement-carousel-controls button:focus-visible {
+  outline: 2px solid #ffae6b;
+  outline-offset: 2px;
+}
+
+.achievement-carousel-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.1rem 0 0.8rem;
+  scroll-behavior: auto;
+  scrollbar-color: rgba(255, 174, 107, 0.58) rgba(255, 255, 255, 0.08);
+  scrollbar-width: thin;
+  touch-action: pan-x;
+  cursor: grab;
+  overscroll-behavior-x: contain;
+}
+
+.achievement-carousel-viewport:active {
+  cursor: grabbing;
+}
+
+.achievement-carousel-viewport:focus-visible {
+  outline: 2px solid rgba(255, 174, 107, 0.7);
+  outline-offset: 4px;
+}
+
+.achievement-carousel-track,
+.achievement-carousel-set {
+  display: flex;
+  width: max-content;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.achievement-carousel-set[aria-hidden="true"] {
+  pointer-events: auto;
+}
+
+.achievement-carousel-set .achievement-card,
+.achievement-carousel-set .achievement-card:nth-child(n) {
+  flex: 0 0 clamp(290px, 29vw, 360px);
+  width: auto;
+  height: 360px;
+  min-height: 0;
+  margin: 0;
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.achievement-carousel-set .achievement-card-featured {
+  flex-basis: min(66vw, 760px);
+  height: 430px;
+}
+
+.achievement-carousel-set .achievement-card-size-tall {
+  height: 410px;
+}
+
+.achievement-carousel-set .achievement-card-size-wide {
+  flex-basis: min(48vw, 560px);
+  height: 380px;
+}
+
+.achievement-carousel-set .achievement-card-size-compact {
+  flex-basis: clamp(280px, 25vw, 330px);
+  height: 330px;
+}
+
+@media (max-width: 1026px) {
+  .achievement-carousel-set .achievement-card {
+    flex-basis: 320px;
+  }
+
+  .achievement-carousel-set .achievement-card-featured {
+    flex-basis: min(72vw, 620px);
+  }
+
+  .achievement-carousel-set .achievement-card-size-wide {
+    flex-basis: min(56vw, 460px);
+  }
+}
+
+@media (max-width: 700px) {
+  .achievement-carousel-controls {
+    justify-content: center;
+  }
+
+  .achievement-carousel-track,
+  .achievement-carousel-set {
+    gap: 0.75rem;
+  }
+
+  .achievement-carousel-set .achievement-card {
+    flex-basis: 84vw;
+    height: 370px;
+  }
+
+  .achievement-carousel-set .achievement-card-featured {
+    flex-basis: 90vw;
+    height: 410px;
+  }
+
+  .achievement-carousel-set .achievement-card-size-wide {
+    flex-basis: 87vw;
+  }
+
+  .achievement-carousel-set .achievement-card-size-compact {
+    flex-basis: 80vw;
+    height: 340px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achievement-carousel-viewport {
+    scroll-behavior: auto;
   }
 }
