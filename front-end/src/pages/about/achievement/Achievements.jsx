@@ -71,6 +71,56 @@ const achievements = [
     image: "/assets/images/java_screenshot.png",
     year: "2023",
     link: "https://github.com/NdaedzoPhoshoko/Java-Projects"
+  },
+  {
+    id: 8,
+    title: "AI-Powered ATS",
+    category: "Applicant Tracking System for RedMPS",
+    description: "Built an AI-driven recruitment system that parses resumes into structured candidate data. The React and Node.js application supports CRUD workflows for jobs and candidates, is containerized with Docker, deployed through CI/CD, and used by RedMPS for external recruitment.",
+    technologies: ["React", "Node.js", "AI/NLP", "Docker", "CI/CD"],
+    image: "/assets/images/homepage_cover.png",
+    year: "2025",
+    link: "https://onboared.com"
+  },
+  {
+    id: 9,
+    title: "AkovoLabs Speedtest",
+    category: "Network Analytics",
+    description: "Built a network analytics dashboard measuring speed, latency, and jitter for 50+ users, with ISP insights, security recommendations, port risk analysis, and anomaly detection.",
+    technologies: ["React", "Node.js", "Express", "Network Analytics"],
+    image: "/assets/images/langs_screenshot.png",
+    year: "2026",
+    link: "https://speedtest.akovolabs.co.za"
+  },
+  {
+    id: 10,
+    title: "AkovoLabs Burner",
+    category: "AI Subtitle Burner",
+    description: "Built a public video-captioning platform that has processed more than 100 videos. Integrated Gemini transcription, FFmpeg processing, and an asynchronous worker with Supabase storage and job retries.",
+    technologies: ["React", "Vite", "Node.js", "Gemini", "FFmpeg", "Supabase"],
+    image: "/assets/images/reactJscode.png",
+    year: "2026",
+    link: "https://burner.akovolabs.co.za"
+  },
+  {
+    id: 11,
+    title: "Hand Sign Recognition Meeting Assistant",
+    category: "Accessibility & Computer Vision",
+    description: "Built a real-time hand-sign recognition tool that turns webcam gestures into readable sentences, using a React frontend, Node.js/Express gateway, and Python FastAPI vision service with MediaPipe.",
+    technologies: ["React", "Node.js", "FastAPI", "Python", "MediaPipe"],
+    image: "/assets/images/blogs_screenshot.png",
+    year: "2026",
+    link: "https://github.com/ClementPhoshoko/Hand-Sign-Recognition-Web-System"
+  },
+  {
+    id: 12,
+    title: "AkovoLabs Snap",
+    category: "Chrome Extension",
+    description: "Built a Manifest V3 extension with React and Vite that captures full-page scrolling screenshots, stitches viewports with the Canvas API, detects repeated floating navigation, and exports PNG, JPEG, or WebP images.",
+    technologies: ["Chrome Extension", "Manifest V3", "React", "Vite", "Canvas API"],
+    image: "/assets/images/folder_screenshot.png",
+    year: "2026",
+    link: "https://snap.akovolabs.co.za"
   }
 ];
 

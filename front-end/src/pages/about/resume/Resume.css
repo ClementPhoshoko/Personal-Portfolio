@@ -239,6 +239,16 @@
   color: #e8eaf6;
 }
 
+.contact-item a {
+  color: #e8eaf6;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 .contact-item i {
   width: 18px;
   height: 18px;

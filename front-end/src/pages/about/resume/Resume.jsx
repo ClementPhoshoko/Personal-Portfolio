@@ -48,7 +48,7 @@ const Resume = () => {
             <h2 className="section-heading">CONTACT</h2>
             <div className="contact-item">
               <i className="icon-phone"></i>
-              <span>+27723157290</span>
+              <span>+27 72 315 7290</span>
             </div>
             <div className="contact-item">
               <i className="icon-email"></i>
@@ -56,8 +56,12 @@ const Resume = () => {
             </div>
             <div className="contact-item">
               <i className="icon-location"></i>
-              <span>Alexandra, 2014, South Africa</span>
-              <span className="relocation-note">(willing to relocate)</span>
+              <a href="https://clementphoshoko.co.za" target="_blank" rel="noopener noreferrer">clementphoshoko.co.za</a>
+            </div>
+            <div className="contact-item">
+              <i className="icon-location"></i>
+              <span>Johannesburg, South Africa</span>
+              <span className="relocation-note">(open to relocation)</span>
             </div>
           </div>
 
@@ -68,11 +72,11 @@ const Resume = () => {
           >
             <h2 className="section-heading">CORE SKILLS</h2>
             <ul className="skills-list">
-              <li>Java, Python, C++, C#, JavaScript (React.js, Node.js, Express.js), SQL</li>
-              <li>HTML5, CSS3, XML, Angular, Android Studio</li>
-              <li>Java Spring, Git, Huawei Cloud Version Control, Microsoft Assembly, Oracle Cloud, Power BI</li>
-              <li>MySQL, REST APIs, CRUD Operations, Sequelize</li>
-              <li>Agile & Scrum, SDLC, DevOps Practices</li>
+              <li><b>Languages:</b> Java, Python, JavaScript (ES6+), SQL, Shell Scripting, HTML5, CSS3</li>
+              <li><b>Frameworks:</b> React.js, Node.js, Express.js, FastAPI</li>
+              <li><b>Data:</b> MySQL, ClickHouse, MinIO, Apache NiFi, Kafka, Spark, REST APIs</li>
+              <li><b>DevOps &amp; tools:</b> Git, Docker, VMware, Azure DevOps, CI/CD, Grafana, Jira, Huawei CodeArts</li>
+              <li><b>Cloud &amp; concepts:</b> Oracle Cloud, Huawei Cloud, Vercel, OOP, system design, data structures &amp; algorithms</li>
             </ul>
           </div>
 
@@ -99,17 +103,26 @@ const Resume = () => {
             <h2 className="section-heading">SOCIAL</h2>
             <ul className="social-list">
               <li>
-                <a href="https://www.linkedin.com/in/phoshokondaedzo/" target="_blank" rel="noopener noreferrer">
+                <a href="https://linkedin.com/in/ndaedzophoshoko" target="_blank" rel="noopener noreferrer">
                   <LinkedIn className="social-icon" />
                   <span>LinkedIn</span>
                 </a>
               </li>
               <li>
-                <a href="https://github.com/NdaedzoPhoshoko" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/clementphoshoko" target="_blank" rel="noopener noreferrer">
                   <GitHub className="social-icon" />
                   <span>GitHub</span>
                 </a>
               </li>
+            </ul>
+          </div>
+          <div
+            id="additional-section"
+            className={`resume-section qualities-section ${visibleSections.has('additional-section') ? 'animate-slide-in-left' : ''}`}
+          >
+            <h2 className="section-heading">INTERESTS</h2>
+            <ul className="qualities-list">
+              <li>Technology risk, IT controls and governance, cybersecurity, cloud computing, and DevOps.</li>
             </ul>
           </div>
         </div>
@@ -133,13 +146,7 @@ const Resume = () => {
             className={`resume-section summary-section ${visibleSections.has('summary-section') ? 'animate-slide-in-right' : ''}`}
           >
             <h2 className="section-heading">SUMMARY</h2>
-            <p>
-              A skilled IT intern with a Cum Laude BSc Honours in Mathematics, driven by
-              the goal of becoming a top-tier information technology professional.
-              Motivated to apply smart, effective, and optimized analytical techniques to
-              solve real-world problems and contribute meaningfully to innovative tech
-              solutions.
-            </p>
+            <p>Cum Laude BSc (Honours) Mathematics graduate and Junior Full Stack Developer with experience developing enterprise banking platforms, cloud applications, backend services, data pipelines, and AI-powered systems. Skilled in React.js, Node.js, Python, SQL, CI/CD, and cloud technologies, with a strong foundation in software engineering and distributed systems.</p>
           </div>
 
           {/* Education Section */}
@@ -151,7 +158,7 @@ const Resume = () => {
             <div className="education-item">
               <h3>Bachelor of Science Honours in Mathematics</h3>
               <p className="institution">University of Limpopo | Jan 2024 – Nov 2024</p>
-              <p className="project-detail"><em>Research project:</em> Cryptography: Linear Codes and G-modules.</p>
+              <p className="project-detail"><em>Research:</em> “Linear Codes and G-modules” — mathematical vectors and post-quantum cryptography, with a focus on encryption and decryption.</p>
             </div>
             <div className="education-item">
               <h3>Bachelor of Science in Mathematics and Computer Science</h3>
@@ -167,14 +174,22 @@ const Resume = () => {
           >
             <h2 className="section-heading">CAREER SUMMARY</h2>
             <div className="career-item">
-              <h3>IT Intern - REDM Professional Services (PTY) LTD</h3>
+              <h3>Junior Full Stack Developer — Contracted to Absa Group Limited</h3>
+              <p className="duration">Jan 2026 – Present | 270 Republic Road, Randburg</p>
+              <ul className="responsibilities">
+                <li>Develop and maintain enterprise banking platforms and internal engineering solutions using Python, SQL, and Shell Scripting.</li>
+                <li>Build backend services, REST APIs, and data pipelines integrating Apache NiFi, Kafka, Spark, MinIO, and ClickHouse.</li>
+                <li>Build and maintain CI/CD pipelines and automate operational workflows, helping reduce manual support tasks by 99% and saving the team 15 hours weekly.</li>
+                <li>Test, monitor, and optimize platforms for performance, scalability, security, and high availability, collaborating with product teams in Agile.</li>
+              </ul>
+            </div>
+            <div className="career-item">
+              <h3>Software Development Intern — REDM Professional Services (Pty) Ltd</h3>
               <p className="duration">Jan 2025 – Dec 2025 | Woodmead Business Park, Sandton, 2191</p>
               <ul className="responsibilities">
-                <li>Collaborated within the DevOps team to develop and refine
-                    application features, including full CRUD operations, for client-facing
-                    projects, ensuring usability and performance.</li>
-                <li>Collaborated with fellow interns to develop an ATS website, contributing to both front-end and back-end tasks to ensure smooth functionality.</li>
-                <li>Actively participated in COE team standup for knowledge sharing, innovation discussions, and continuous learning to support business goals and personal growth.</li>
+                <li>Developed three client-facing web applications using React and Node.js, improving load times and system reliability.</li>
+                <li>Built an AI-powered applicant tracking system with Node.js to parse resumes and automate candidate data staging.</li>
+                <li>Collaborated in a six-person Agile/Scrum team, using Jira to track work across two-week sprints.</li>
               </ul>
             </div>
             <div className="career-item">
@@ -193,15 +208,7 @@ const Resume = () => {
             className={`resume-section references-section ${visibleSections.has('references-section') ? 'animate-slide-in-right' : ''}`}
           >
             <h2 className="section-heading">REFERENCES</h2>
-            <div className="reference-item">
-              <p>Mabore Thusago, Coordinator at CAE BSSP (mabore.thosago@ul.ac.za)</p>
-            </div>
-            <div className="reference-item">
-              <p>Sofuthe Nomsa, Internship Line Manager at REDMPS (nomsa.sofuthe@remps.com)</p>
-            </div>
-            <div className="reference-item">
-              <p>Dr Amin Saeidi, Honours project supervisor (amin.saeidi@ul.ac.za)</p>
-            </div>
+            <div className="reference-item"><p>References available upon request.</p></div>
           </div>
         </div>
       </div>
