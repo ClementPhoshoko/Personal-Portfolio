@@ -25,6 +25,7 @@ const TimeLine = () => {
       title: 'Bachelor of Science Honors in Mathematics',
       location: 'University of Limpopo',
       achievement: 'Cum Laude Student',
+      description: 'Researched Linear Codes and G-modules, using mathematical vectors to study encryption and decryption.',
       status: 'completed',
       icon: <CheckCircle />
     },
@@ -32,9 +33,19 @@ const TimeLine = () => {
       date: 'Jan 2025 - Dec 2025',
       title: 'Information Technology Internship',
       location: 'REDM Professional Services (Pty) Ltd',
-      achievement: 'React, Node, Oracle',
-      // status: 'current',
+      achievement: 'Java, C++, SQL, React, Node.js, Oracle',
+      mobileAchievement: 'ReactJS, NodeJS, Python, Oracle Cloud',
+      description: 'Worked with the DevOps team to develop and refine client application features, including full CRUD functionality. Collaborated with fellow interns on both the front end and back end of an applicant tracking system (ATS), and took part in Centre of Excellence (COE) standups focused on knowledge sharing and continuous improvement.',
       status: 'completed',
+      icon: <Work />
+    },
+    {
+      date: 'Jan 2026 - Present',
+      title: 'Junior Full Stack Developer',
+      location: 'Contracted to Absa Group Limited (via RedMPS (Pty) Ltd)',
+      achievement: 'Python, Shell, Azure DevOps, Apache NiFi, Kafka, React.js',
+      description: 'Contribute to the development, automation, testing, and maintenance of enterprise banking platforms and internal engineering solutions. Work spans backend services, data pipelines, APIs, and platform integrations, helping improve reliability and scalability while supporting operational processes and CI/CD workflows.',
+      status: 'current',
       icon: <Work />
     }
   ];
@@ -73,6 +84,11 @@ const TimeLine = () => {
                   <Typography variant="body2" className="timeline-location">
                     {item.location}
                   </Typography>
+                  {item.description && (
+                    <Typography variant="body2" className="timeline-description">
+                      {item.description}
+                    </Typography>
+                  )}
                   {item.achievement && (
                     <Chip 
                       label={item.achievement} 
@@ -114,8 +130,11 @@ const TimeLine = () => {
                 <div className="mobile-content-box">
                   <h6 className="mobile-timeline-title">{item.title}</h6>
                   <p className="mobile-timeline-location">{item.location}</p>
-                  {item.achievement && (
-                    <span className="mobile-achievement-chip">{item.achievement}</span>
+                  {item.description && (
+                    <p className="mobile-timeline-description">{item.description}</p>
+                  )}
+                  {(item.mobileAchievement || item.achievement) && (
+                    <span className="mobile-achievement-chip">{item.mobileAchievement || item.achievement}</span>
                   )}
                   {item.status === 'current' && (
                     <span className="mobile-status-chip">Currently Active</span>
