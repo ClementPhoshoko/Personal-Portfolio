@@ -37,7 +37,7 @@ const Resume = () => {
             id="profile-section" 
             className={`resume-section profile-image ${visibleSections.has('profile-section') ? 'animate-slide-in-left' : ''}`}
           >
-            <img src="/assets/images/author-profile.jpg" alt="NDAEDZO CLEMENT PHOSHOKO" />
+            <img src="/assets/images/author-profile.webp" alt="NDAEDZO CLEMENT PHOSHOKO" />
           </div>
 
           {/* Contact Section */}

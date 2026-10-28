@@ -10,7 +10,7 @@ const achievements = [
     filterGroup: "AI & Data",
     description: "Built a network analytics dashboard measuring speed, latency, and jitter for 50+ users, with ISP insights, security recommendations, port risk analysis, and anomaly detection.",
     technologies: ["React", "Node.js", "Express", "Network Analytics"],
-    image: "/assets/images/speedtest_akovolabs.png",
+    image: "/assets/images/speedtest_akovolabs.webp",
     year: "2026",
     featured: true,
     link: "https://speedtest.akovolabs.co.za"
@@ -22,7 +22,7 @@ const achievements = [
     filterGroup: "AI & Data",
     description: "Built a public video-captioning platform that has processed more than 100 videos. Integrated Gemini transcription, FFmpeg processing, and an asynchronous worker with Supabase storage and job retries.",
     technologies: ["React", "Vite", "Node.js", "Gemini", "FFmpeg", "Supabase"],
-    image: "/assets/images/burner_akovolabs.png",
+    image: "/assets/images/burner_akovolabs.webp",
     year: "2026",
     link: "https://burner.akovolabs.co.za"
   },
@@ -33,7 +33,7 @@ const achievements = [
     filterGroup: "AI & Data",
     description: "Built a real-time hand-sign recognition tool that turns webcam gestures into readable sentences, using a React frontend, Node.js/Express gateway, and Python FastAPI vision service with MediaPipe.",
     technologies: ["React", "Node.js", "FastAPI", "Python", "MediaPipe"],
-    image: "/assets/images/hand_sign_recognition_system.png",
+    image: "/assets/images/hand_sign_recognition_system.webp",
     year: "2026",
     link: "https://github.com/ClementPhoshoko/Hand-Sign-Recognition-Web-System"
   },
@@ -44,7 +44,7 @@ const achievements = [
     filterGroup: "Tools",
     description: "Built a Manifest V3 extension with React and Vite that captures full-page scrolling screenshots, stitches viewports with the Canvas API, detects repeated floating navigation, and exports PNG, JPEG, or WebP images.",
     technologies: ["Chrome Extension", "Manifest V3", "React", "Vite", "Canvas API"],
-    image: "/assets/images/akovolabs_snap.png",
+    image: "/assets/images/akovolabs_snap.webp",
     year: "2026",
     link: "https://snap.akovolabs.co.za"
   },
@@ -66,7 +66,7 @@ const achievements = [
     filterGroup: "Web Apps",
     description: "Built and deployed a full-stack e-commerce with responsive UX, image hosting integration, and APIs.",
     technologies: ["React", "Node", "Git", "Supabase"],
-    image: "/assets/images/homepage_cover.png",
+    image: "/assets/images/homepage_cover.webp",
     year: "2026",
     link: "https://clementine-store.vercel.app/"
   },
@@ -77,7 +77,7 @@ const achievements = [
     filterGroup: "Tools",
     description: "Captures webcam video, detects motion in real-time, and identifies direction using OpenCV and Java Swing.",
     technologies: ["OpenCV", "Java", "Java Swing"],
-    image: "/assets/images/robot_with_one_eye.png",
+    image: "/assets/images/robot_with_one_eye.webp",
     year: "2024",
     link: "https://github.com/NdaedzoPhoshoko/Robot-With-One-Eye"
   },
@@ -88,7 +88,7 @@ const achievements = [
     filterGroup: "AI & Data",
     description: "G-modules enhance linear codes for error correction through algebraic optimization of encoding/decoding.",
     technologies: ["Groups", "Gap", "Linear Algebra", "Matlab"],
-    image: "/assets/images/research_screenshot.png",
+    image: "/assets/images/research_screenshot.webp",
     year: "2024",
     link: "https://www.overleaf.com/read/kqfssdgrbwzh#c4639a"
   },
@@ -99,7 +99,7 @@ const achievements = [
     filterGroup: "Web Apps",
     description: "A responsive portfolio website using React.js, Node.js, and Express.js with modern UI/UX design.",
     technologies: ["React.js", "Node.js", "Express.js", "CSS3"],
-    image: "/assets/images/langs_screenshot.png",
+    image: "/assets/images/langs_screenshot.webp",
     year: "2025",
     link: "https://github.com/NdaedzoPhoshoko/Portfolio-for-Clement"
   },
@@ -110,7 +110,7 @@ const achievements = [
     filterGroup: "Tools",
     description: "Inverse Head and Shoulders, Descending Triangle, Bull Flag, and etc. indicators in MT4.",
     technologies: ["MQL", "MQL4", "Statistics"],
-    image: "/assets/images/market.png",
+    image: "/assets/images/market.webp",
     year: "2025"
   },
   {
@@ -120,7 +120,7 @@ const achievements = [
     filterGroup: "Tools",
     description: "Exploring C++ from IO streams, functions, classes, and etc.",
     technologies: ["C++", "IO streams", "Functions", "Classes"],
-    image: "/assets/images/cpp_screenshot.png",
+    image: "/assets/images/cpp_screenshot.webp",
     year: "2022",
     link: "https://github.com/NdaedzoPhoshoko/CPP-Projects"
   },
@@ -131,7 +131,7 @@ const achievements = [
     filterGroup: "Tools",
     description: "Exploring Java from Data Structures to Threads. Also covers different topics in OOP.",
     technologies: ["Java", "Data Structures", "OOP", "Threads"],
-    image: "/assets/images/java_screenshot.png",
+    image: "/assets/images/java_screenshot.webp",
     year: "2023",
     link: "https://github.com/NdaedzoPhoshoko/Java-Projects"
   },
@@ -143,7 +143,7 @@ const certificates = [
     title: "OCI Certified Foundations Associate",
     date: "Feb 2025",
     place: "Oracle",
-    icon: "/assets/certs_icons/OCI2024FNDCFAcloud.png",
+    icon: "/assets/certs_icons/OCI2024FNDCFAcloud.webp",
     link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=CDBE48D66A465AF2321BE00C44E4F5FCADAB24CAFF32BF3C7D9DF5DEEFB9A203"
   },
   {
@@ -151,7 +151,7 @@ const certificates = [
     title: "OCI Certified Data Foundations Associate",
     date: "Mar 2025",
     place: "Oracle",
-    icon: "/assets/certs_icons/OCI2024DCFAdata.png",
+    icon: "/assets/certs_icons/OCI2024DCFAdata.webp",
     link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=CDBE48D66A465AF2321BE00C44E4F5FC3C1803EF205A7D1B53B170D130106E5F"
   },
   {
@@ -159,7 +159,7 @@ const certificates = [
     title: "OCI Certified AI Foundations Associate",
     date: "Feb 2025",
     place: "Oracle",
-    icon: "/assets/certs_icons/OCI24AICFAai.png",
+    icon: "/assets/certs_icons/OCI24AICFAai.webp",
     link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=73C102EA909F226C8F85B0A63FAA86767484EF7259C2156B63FD5E5C0F1A5CD7"
   },
   {
@@ -167,7 +167,7 @@ const certificates = [
     title: "Oracle Database Administration I (1z0-082)",
     date: "Oct 2025",
     place: "Oracle",
-    icon: "/assets/certs_icons/Learning-Path_badge_default.png",
+    icon: "/assets/certs_icons/Learning-Path_badge_default.webp",
     link: "https://education.oracle.com/oracle-database-administration-i/pexam_1Z0-082"
   },
   {
@@ -175,7 +175,7 @@ const certificates = [
     title: "16 Weeks Sofware development Program",
     date: "Nov 2023",
     place: "Power Learn Project",
-    icon: "/assets/certs_icons/powerlearn.png",
+    icon: "/assets/certs_icons/powerlearn.webp",
     link: "https://academy.powerlearnprojectafrica.org/verify-cert/f69d838a-e768-4d1e-85d5-b8520953d348"
   },
   {
@@ -183,7 +183,7 @@ const certificates = [
     title: "Agile and Scrum Course",
     date: "Sep 2024",
     place: "Udemy",
-    icon: "/assets/certs_icons/udemy.png",
+    icon: "/assets/certs_icons/udemy.webp",
     link: "https://www.udemy.com/certificate/UC-cc6a8354-38f8-4bb6-a7de-ca1240070ba1/"
   },
   {
@@ -191,7 +191,7 @@ const certificates = [
     title: "Java Data Structures and Algorithms",
     date: "Sep 2024",
     place: "Udemy",
-    icon: "/assets/certs_icons/udemy.png",
+    icon: "/assets/certs_icons/udemy.webp",
     link: "https://www.udemy.com/certificate/UC-507b8d92-27c1-42ee-9600-3c4db86a71a5/"
   },
   {
@@ -199,7 +199,7 @@ const certificates = [
     title: "MS Power BI Desktop for Business Intelligence",
     date: "In-Progress",
     place: "Udemy",
-    icon: "/assets/certs_icons/udemy.png",
+    icon: "/assets/certs_icons/udemy.webp",
     link: "https://www.udemy.com/course/microsoft-power-bi-up-running-with-power-bi-desktop/"
   },
   {
@@ -207,7 +207,7 @@ const certificates = [
     title: "Complete Java Course",
     date: "Sept 2024",
     place: "Udemy",
-    icon: "/assets/certs_icons/udemy.png",
+    icon: "/assets/certs_icons/udemy.webp",
     link: "https://www.udemy.com/certificate/UC-97954066-1887-4b6e-bd87-ee81b4e3d7cb/"
   },
   {
@@ -215,7 +215,7 @@ const certificates = [
     title: "Android Development Course with Java",
     date: "In-Progress",
     place: "Udemy",
-    icon: "/assets/certs_icons/udemy.png",
+    icon: "/assets/certs_icons/udemy.webp",
     link: "https://www.udemy.com/course/the-complete-android-10-developer-course-mastering-android/"
   }
 ];
@@ -721,7 +721,7 @@ const Achievements = () => {
                 alt={cert.title}
                 className="cert-icon"
                 onError={(e) => {
-                  e.target.src = '/assets/certs_icons/Learning-Path_badge_default.png';
+                  e.target.src = '/assets/certs_icons/Learning-Path_badge_default.webp';
                 }}
               />
             </div>

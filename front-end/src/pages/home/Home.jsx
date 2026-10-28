@@ -64,7 +64,7 @@ const Home = () => {
         </div>
         <div className="top-right-container">
           <img 
-            src={getOptimizedImageSrc('/assets/images/reactJscode.png')} 
+            src={getOptimizedImageSrc('/assets/images/reactJscode.webp')}
             alt="ReactJS script preview image" 
             className="script-preview-image"
           />

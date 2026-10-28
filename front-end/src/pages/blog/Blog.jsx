@@ -20,7 +20,7 @@ const Blog = () => {
           <div className="image-container">
             {!heroImageLoaded && <div className="main-image-skeleton shimmer" />}
             <img 
-              src={getOptimizedImageSrc('/assets/blogs/mainteachingstudents.jpeg')} 
+              src={getOptimizedImageSrc('/assets/blogs/mainteachingstudents.webp')}
               alt="Recent insights" 
               className={`main-image ${heroImageLoaded ? 'show' : 'hide'}`}
               loading="eager"
