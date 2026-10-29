@@ -139,6 +139,22 @@ const achievements = [
 
 const certificates = [
   {
+    id: 11,
+    title: "Agentic AI Certified Foundations Associate",
+    date: "Oct 2026",
+    place: "Oracle",
+    icon: "/assets/certs_icons/Learning-Path_badge_default.webp",
+    link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=74FA1721D28CB39CC30189A4A75B88CAEB0F1EDA3CF05ECC29CB6A088C97384A"
+  },
+  {
+    id: 12,
+    title: "OCI Fusion AI Agent Studio Certified Foundations Associate",
+    date: "Feb 2026",
+    place: "Oracle",
+    icon: "/assets/certs_icons/Learning-Path_badge_default.webp",
+    link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=1C4C1D23D258100D160EAF9198D7A70684ABF6A2B79709547E87347A4120A06B"
+  },
+  {
     id: 1,
     title: "OCI Certified Foundations Associate",
     date: "Feb 2025",
@@ -711,7 +727,7 @@ const Achievements = () => {
         {(showAllCerts ? certificates : certificates.slice(0, 3)).map((cert) => (
           <div 
             key={cert.id} 
-            className="certificate-item"
+            className={`certificate-item ${cert.id === 11 || cert.id === 12 ? 'certificate-item-recent' : ''} ${cert.id >= 1 && cert.id <= 3 ? 'certificate-item-legacy-icons' : ''}`}
             onClick={() => window.open(cert.link, '_blank')}
             style={{ cursor: 'pointer' }}
           >

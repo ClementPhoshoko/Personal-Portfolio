@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://clementphoshoko.co.za/</loc>
+    <image:image>
+      <image:loc>https://clementphoshoko.co.za/assets/recent_work/1.webp</image:loc>
+      <image:title>E-commerce Platform</image:title>
+      <image:caption>A sleek e-commerce experience with secure payments, smart inventory, and smooth checkout.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.co.za/assets/recent_work/2.webp</image:loc>
+      <image:title>E-commerce Platform</image:title>
+      <image:caption>From product concepts to full functional e-commerce sites.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.co.za/assets/recent_work/3.webp</image:loc>
+      <image:title>E-commerce Platform</image:title>
+      <image:caption>Integrated Payment Gateways</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.co.za/assets/recent_work/4.webp</image:loc>
+      <image:title>Secure JWT Authentication</image:title>
+      <image:caption>Robust authentication system with JWT tokens for secure access to protected resources</image:caption>
+    </image:image>
+    <video:video>
+      <video:content_loc>https://clementphoshoko.co.za/assets/recent_work/6.mp4</video:content_loc>
+      <video:title>Portfolio Sites</video:title>
+      <video:description>A portfolio website with a clean and responsive design, showcasing my work and skills.</video:description>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:content_loc>https://clementphoshoko.co.za/assets/recent_work/7.mp4</video:content_loc>
+      <video:title>AI Gesture and Linguistic Meeting Platform</video:title>
+      <video:description>A meeting platform with advanced gesture recognition and linguistic processing for all people.</video:description>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <image:image>
+      <image:loc>https://clementphoshoko.co.za/assets/recent_work/8.webp</image:loc>
+      <image:title>Robust Notifications</image:title>
+      <image:caption>Mobile-first approach ensuring perfect experience on smartphones and tablets.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.co.za/assets/recent_work/9.webp</image:loc>
+      <image:title>Robust Notifications</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.co.za/assets/recent_work/10.webp</image:loc>
+      <image:title>Meeting Platforms</image:title>
+      <image:caption>Peer-to-peer meeting platform with secure communication channels and real-time video.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://clementphoshoko.co.za/assets/recent_work/11.webp</image:loc>
+      <image:title>Gesture to Speech</image:title>
+      <image:caption>A gesture recognition application that converts hand gestures into spoken language.</image:caption>
+    </image:image>
+  </url>
+</urlset>

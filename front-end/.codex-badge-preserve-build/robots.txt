@@ -1,0 +1,13 @@
+# Robots.txt for Clement Portfolio
+
+User-agent: *
+Allow: /
+
+# Disallow specific paths if needed
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap locations
+Sitemap: https://clementphoshoko.co.za/main_sitemap.xml
+Sitemap: https://clementphoshoko.co.za/image_sitemap.xml
+
