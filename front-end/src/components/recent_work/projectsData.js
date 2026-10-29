@@ -1,6 +1,33 @@
 export const projects = [
   {
     type: 'image',
+    src: '/assets/images/speedtest_akovolabs.webp',
+    title: 'AkovoLabs Speedtest',
+    description: [
+      'Network analytics dashboard for connection speed, latency, jitter, ISP insights, and security recommendations.'
+    ],
+    techStack: ['React', 'Node.js', 'Network Analytics']
+  },
+  {
+    type: 'image',
+    src: '/assets/images/burner_akovolabs.webp',
+    title: 'AkovoLabs Burner',
+    description: [
+      'Video-captioning platform combining Gemini transcription, FFmpeg processing, and asynchronous jobs.'
+    ],
+    techStack: ['React', 'Gemini', 'FFmpeg', 'Supabase']
+  },
+  {
+    type: 'image',
+    src: '/assets/images/akovolabs_snap.webp',
+    title: 'AkovoLabs Snap',
+    description: [
+      'Chrome extension that captures full-page screenshots, stitches scrolling views, and exports multiple image formats.'
+    ],
+    techStack: ['React', 'Manifest V3', 'Canvas API']
+  },
+  {
+    type: 'image',
     src: '/assets/recent_work/1.webp',
     title: 'E-commerce Platform',
     description: [
